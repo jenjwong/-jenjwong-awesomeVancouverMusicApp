@@ -5,6 +5,8 @@ import store from './store';
 import Main from './components/Main';
 // import AsynchRoute from './AsynchRoute'
 import { BrowserRouter, Match, Miss } from 'react-router'
+import './css/normalize.css';
+import './css/App.css';
 
 if (global) {
   global.System = {import () {}}

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import EventsListEntry from './EventsListEntry';
 import { connect } from 'react-redux'
+import { handleFilterUpdate } from '../utilities/filterHelpers';
 
 class EventsList extends Component {
 
@@ -35,11 +36,11 @@ class EventsList extends Component {
   }
 }
 
-// map states to props do filter here
+
 
 const mapStateToProps = (state) => {
   return {
-    concertData: state.concertData
+    concertData: handleFilterUpdate(state.concertData, state.searchTerm, state.searchCost)
   }
 };
 

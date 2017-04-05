@@ -18,17 +18,11 @@ class Main extends Component {
     };
   }
 
-  componentWillMount() {
-    // this.setState({ concerts: sortByDate(this.state.concertData) });
-    if (!this.props.concertData[0]) {
-     this.props.dispatch(fetchConcertData(`http://demo5873748.mockable.io/`))
-    }
-  }
-
   componentDidMount() {
+    this.props.dispatch(fetchConcertData(`http://demo5873748.mockable.io/`))
     document.addEventListener('touchstart', () => {}, true);
-
   }
+
 
   handleFilters = (filtered) => {
     this.setState({ concerts: filtered });

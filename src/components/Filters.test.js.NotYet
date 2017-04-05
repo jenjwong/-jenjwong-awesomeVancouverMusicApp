@@ -1,0 +1,22 @@
+// import React from 'react';
+// import Filters from './Filters';
+// import { shallow } from 'enzyme';
+// import { shallowToJson } from './EventsListEntry';
+// import mockData from '../utilities/testMockData.js';
+// import { filterByTypeahead }  from '../utilities/filterHelpers.js';
+//
+// Object.defineProperty(window, "matchMedia", {
+//     value: jest.fn(() => { return { matches: true } })
+// });
+//
+//
+// test('Search should render correct number of concerts based on search term', () => {
+//   const searchWord = 'third';
+//   const component = shallow(<Filters concertData={mockData} concerts={mockData} handleFilters={()=>{}}/>)
+     component.find('input.typeAheadString').simulate('change', {target: {value: searchWord}})
+     const showCount = filterByTypeahead(mockData, searchWord).length
+     expect(component.find(EventsListEntry).length).toEqual(showCount)
+// })
+
+
+// test doesn't work--needs prop.function from parent; wait for redux
