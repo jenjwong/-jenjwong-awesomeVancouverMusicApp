@@ -1,6 +1,4 @@
 import debounce from 'lodash/debounce';
-import { connect } from 'react-redux';
-import { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax } from '../actionCreators';
 
 export const sortByDate = (concerts) => {
   const makeDateArray = string => string.split('-');
@@ -53,22 +51,8 @@ export const filteredMatches = (concerts, wordToMatch, maxPrice) => {
 export const displayMin = min => min === 0 ? 'Free' : `$${min}`;
 
 export const handleFilterUpdate = (concertData, typeAheadSearch, costSearch, handleFilters) => {
-  // console.log(this.props, 'props in handle update')
-  // console.log()
+  // this.props.dispatch(setConcertsCostMin(this.props.concertData))
+  // this.props.dispatch(setConcertsCostMax(this.props.concertData))
   const filteredConcerts = filteredMatches(concertData, typeAheadSearch, costSearch);
-  // dispatch(setConcertsCostMin(filteredConcerts))
-  // dispatch(setConcertsCostMax(filteredConcerts))
   return filteredConcerts
 };
-
-const mapStateToProps = (state) => {
-  return {
-    searchTerm: state.searchTerm,
-    searchCost: state.searchCost,
-    concertData: state.concertData,
-    min: state.concertsCostMin,
-    max: state.concertsCostMax,
-  }
-};
-
-export default connect(mapStateToProps)(handleFilterUpdate);

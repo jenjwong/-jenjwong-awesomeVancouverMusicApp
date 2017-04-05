@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax, isCostSpecified } from '../actionCreators';
+import { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax, isCostSpecified, handleSearch } from '../actionCreators';
 import { findMinMax, filterByCost, filterByTypeahead, displayMin } from '../utilities/filterHelpers';
 import { isSmallScreen, isFree } from '../utilities/utils';
 
@@ -22,8 +22,6 @@ class Filters extends Component {
     // this.debouncedHandleInput = debounce(this.handleInput, 15);
   }
 
-
-
   // handles value update when min/max range changes from text filter
   componentDidUpdate() {
     if (!this.props.isCostSpecified && this.rangeInput) {
@@ -31,11 +29,11 @@ class Filters extends Component {
     }
   }
 
-  handleSearchTermChange (event) {
-    this.props.dispatch(setSearchTerm(event.target.value))
+  handleSearchInputChange (event) {
+    this.props.dispatch(handleSearch(event.target.value))
   }
 
-  handleCostRangeChange (event) {
+  handleCostRangeInputChange (event) {
     this.props.dispatch(setSearchCost(event.target.value))
     this.props.dispatch(isCostSpecified(true))
   }
@@ -44,37 +42,6 @@ class Filters extends Component {
   searchedCostOrMax = (searchedCost, max) => {
     return max !== -Infinity && searchedCost > max | !this.props.isCostSpecified ? max : searchedCost;
   }
-
-  // returns function bound with latest input; handles React asynch state keeping query in synch
-  // TODO: add aditional filters here:
-  // boundFilter = (name, boundValue) => {
-  //   return (search) => {
-  //     search[name] = boundValue;
-  //     const typeaheadMatches = filterByTypeahead(search.concerts, search.typeAheadString);
-  //     const maxMin = this.setMinMax(typeaheadMatches);
-  //     const costToDisplay = this.searchedCostOrMax(search.searchedCost, maxMin[1]);
-  //     this.setState({ searchedCost: costToDisplay });
-  //     return filterByCost(typeaheadMatches, search.searchedCost);
-  //   };
-  // }
-
-  // handleUpdate = (inputName, inputValue) => {
-  //   const boundFilter = this.boundFilter(inputName, inputValue);
-  //   this.props.handleFilters(boundFilter({ concerts: this.props.concertData, typeAheadString: this.state.typeAheadString, searchedCost: this.state.searchedCost }));
-  // }
-
-  // handleInput = (e) => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  //   this.handleUpdate(e.target.name, e.target.value);
-  // }
-
-  // debouncedHander = (e) => {
-  //   if (e.target.name === 'searchedCost' && !this.state.isCostSpecified) {
-  //     this.setState({ isCostSpecified: true });
-  //   }
-  //   e.persist();
-  //   this.debouncedHandleInput(e);
-  // }
 
   isCostActive = (classname) => {
     if (this.props.min !== Infinity && this.props.concerts[0] && this.props.max !== this.props.min) {
@@ -86,35 +53,31 @@ class Filters extends Component {
   }
 
   costRenderHelper = () => {
-    // if (isSmallScreen()) {
-    //   return (
-    //     <input
-    //       name="searchedCost"
-    //       type="range"
-    //       className="cost-input"
-    //       onTouchEnd={e => this.debouncedHander(e)}
-    //       onTouchStart={e => this.debouncedHander(e)}
-    //       onMouseUp={e => this.debouncedHander(e)}
-    //       min={this.state.min}
-    //       max={this.state.max}
-    //       ref={(input) => { this.rangeInput = input; }}
-    //     />
-    //   );
-    // }
+    if (isSmallScreen()) {
+      return (
+        <input
+          name="searchedCost"
+          type="range"
+          className="cost-input"
+          onTouchEnd={e => this.handleCostRangeInputChange(e)}
+          onTouchStart={e => this.handleCostRangeInputChange(e)}
+          onMouseUp={e => this.handleCostRangeInputChange(e)}
+          min={this.props.min}
+          max={this.props.max}
+          ref={(input) => { this.rangeInput = input; }}
+        />
+      );
+    }
     return (
       <input
         name="searchedCost"
         type="range"
         value={this.props.searchCost}
         className="cost-input"
-        onChange={e => this.handleCostRangeChange(e)}
-        onMouseUp={e => this.handleCostRangeChange(e)}
-        //
-        // onChange={e => this.debouncedHander(e)}
-        // onMouseUp={e => this.debouncedHander(e)}
+        onChange={e => this.handleCostRangeInputChange(e)}
+        onMouseUp={e => this.handleCostRangeInputChange(e)}
         min={this.props.min}
         max={this.props.max}
-        // ref={(input) => { this.rangeInput = input; }}
       />
     );
   }
@@ -124,7 +87,7 @@ class Filters extends Component {
     return (
       <div className="filters-container">
         <div className="typeahead-container">
-          <input name="typeAheadString" id="typeAheadString" type="text" className="typed-input" onChange={e => this.handleSearchTermChange(e)} placeholder="Band/SoundsLike/Venue" value={searchTerm}/>
+          <input name="typeAheadString" id="typeAheadString" type="text" className="typed-input" onChange={e => this.handleSearchInputChange(e)} placeholder="Band/SoundsLike/Venue" value={searchTerm}/>
         </div>
         <div className="searched-cost-container-mobile">
           <div className="searched-cost-frame-mobile">

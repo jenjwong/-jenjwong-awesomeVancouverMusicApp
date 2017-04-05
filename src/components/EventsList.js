@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import EventsListEntry from './EventsListEntry';
 import { connect } from 'react-redux'
 import { handleFilterUpdate } from '../utilities/filterHelpers';
+import { setConcertsCostMin, setConcertsCostMax } from '../actionCreators';
+
 
 class EventsList extends Component {
 
@@ -9,7 +11,11 @@ class EventsList extends Component {
     concerts: PropTypes.arrayOf(PropTypes.object),
   }
 
+
+
   render() {
+
+
     const concerts = this.props.concertData
     return (
       <div ref={() => 'list'} className="events-list">
@@ -38,9 +44,11 @@ class EventsList extends Component {
 
 
 
-const mapStateToProps = (state) => {
+
+
+const mapStateToProps = (state, dispatch) => {
   return {
-    concertData: handleFilterUpdate(state.concertData, state.searchTerm, state.searchCost)
+    concertData: state.filteredConcerts
   }
 };
 

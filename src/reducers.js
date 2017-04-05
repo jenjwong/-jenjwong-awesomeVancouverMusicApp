@@ -1,8 +1,9 @@
-import { FETCH_CONCERT_DATA, SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED } from './actions'
+import { FETCH_CONCERT_DATA, SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED, SET_FILTERED_CONCERTS } from './actions'
 
 const DEFAULT_STATE = {
   searchTerm: '',
   concertData: [],
+  filteredConcerts: [],
   concertsCostMin: 0,
   concertsCostMax: 100,
   searchCost: 0,
@@ -11,7 +12,7 @@ const DEFAULT_STATE = {
 
 
 
-const getConcertData = (state, action) => {
+const setConcertData = (state, action) => {
   const newState = {}
   Object.assign(newState, state, {concertData: action.concertData})
   return newState
@@ -45,11 +46,16 @@ const isCostSpecified = (state, action) => {
   Object.assign(newState, state, {isCostSpecified: action.bool})
   return newState
 }
+const setFilteredConcerts = (state, action) => {
+  const newState = {}
+  Object.assign(newState, state, {filteredConcerts: action.filteredConcertData})
+  return newState
+}
 
 const rootReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case FETCH_CONCERT_DATA:
-    return getConcertData(state, action)
+    return setConcertData(state, action)
     case SET_SEARCH_TERM:
       return setSearchTerm(state, action)
     case SET_SEARCH_COST:
@@ -60,6 +66,8 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
       return setConcertsCostMax(state, action)
     case IS_COST_SPECIFIED:
       return isCostSpecified(state, action)
+    case SET_FILTERED_CONCERTS:
+      return setFilteredConcerts(state, action)
     default:
       return state
   }
