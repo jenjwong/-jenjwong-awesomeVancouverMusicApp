@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax, isCostSpecified, handleSearch } from '../actionCreators';
 import { findMinMax, filterByCost, filterByTypeahead, displayMin } from '../utilities/filterHelpers';
 import { isSmallScreen, isFree } from '../utilities/utils';
+import PriceRangeInput from './PriceRangeInput';
 
 class Filters extends Component {
 
@@ -14,18 +15,13 @@ class Filters extends Component {
     dispatch: PropTypes.func,
   }
 
-  // handles value update when min/max range changes from text filter
-  componentDidUpdate() {
-    if (!this.props.isCostSpecified && this.rangeInput) {
-      this.rangeInput.value = this.props.max;
-    }
-  }
 
-  handleSearchInputChange (event) {
+  handleSearchInputChange = (event) => {
     this.props.dispatch(handleSearch(event.target.value))
   }
 
-  handleCostRangeInputChange (event) {
+  handleCostRangeInputChange = (event) => {
+    console.log('handle range change called')
     this.props.dispatch(setSearchCost(event.target.value))
     this.props.dispatch(handleSearch('', event.target.value))
     this.props.dispatch(isCostSpecified(true))
@@ -45,38 +41,15 @@ class Filters extends Component {
     return `${classname} partial-opaque`;
   }
 
-  costRenderHelper = () => {
-    if (isSmallScreen()) {
-      return (
-        <input
-          name="searchedCost"
-          type="range"
-          className="cost-input"
-          onTouchEnd={e => this.handleCostRangeInputChange(e)}
-          onTouchStart={e => this.handleCostRangeInputChange(e)}
-          onMouseUp={e => this.handleCostRangeInputChange(e)}
-          min={this.props.min}
-          max={this.props.max}
-          ref={(input) => { this.rangeInput = input; }}
-        />
-      );
-    }
-    return (
-      <input
-        name="searchedCost"
-        type="range"
-        value={this.props.searchCost}
-        className="cost-input"
-        onChange={e => this.handleCostRangeInputChange(e)}
-        onMouseUp={e => this.handleCostRangeInputChange(e)}
-        min={this.props.min}
-        max={this.props.max}
-      />
-    );
-  }
+
 
   render() {
-    const { searchTerm, searchCost } = this.props
+    const { searchTerm, searchCost, min, max } = this.props
+
+    if (!this.props.isCostSpecified && this.rangeInput) {
+      this.rangeInput.value = this.props.max;
+    }
+    
     return (
       <div className="filters-container">
         <div className="typeahead-container">
@@ -99,7 +72,7 @@ class Filters extends Component {
                 <span className="cost-min">{displayMin(this.props.min)}</span>}
             </span>
             <span className="cost-input-span">
-              {this.costRenderHelper()}
+              {PriceRangeInput(min, max, searchCost, this.handleCostRangeInputChange)}
             </span>
             <span className="cost-max-container">
               {this.props.max !== -Infinity && <span className="cost-max">${this.props.max}</span>}

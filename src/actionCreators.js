@@ -29,11 +29,11 @@ export function setFilteredConcerts (filteredConcertData) {
 export function handleSearch (searchTerm, costSearch) {
   return function (dispatch, getState) {
     dispatch(setSearchTerm(searchTerm))
+    dispatch(setFilteredConcerts(filteredMatches(getState().concertData, searchTerm, costSearch)))
     if (searchTerm !== '') {
       dispatch(setConcertsCostMin(getState().filteredConcerts))
       dispatch(setConcertsCostMax(getState().filteredConcerts))
     }
-    dispatch(setFilteredConcerts(filteredMatches(getState().concertData, getState().searchTerm, getState().searchCost)))
   }
 }
 
