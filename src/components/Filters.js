@@ -14,14 +14,6 @@ class Filters extends Component {
     dispatch: PropTypes.func,
   }
 
-  constructor() {
-    super();
-    this.state = {
-
-    };
-    // this.debouncedHandleInput = debounce(this.handleInput, 15);
-  }
-
   // handles value update when min/max range changes from text filter
   componentDidUpdate() {
     if (!this.props.isCostSpecified && this.rangeInput) {
@@ -35,6 +27,7 @@ class Filters extends Component {
 
   handleCostRangeInputChange (event) {
     this.props.dispatch(setSearchCost(event.target.value))
+    this.props.dispatch(handleSearch('', event.target.value))
     this.props.dispatch(isCostSpecified(true))
   }
 

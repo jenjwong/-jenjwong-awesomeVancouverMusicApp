@@ -26,12 +26,14 @@ export function setFilteredConcerts (filteredConcertData) {
   return { type: SET_FILTERED_CONCERTS, filteredConcertData }
 }
 
-export function handleSearch (searchTerm) {
+export function handleSearch (searchTerm, costSearch) {
   return function (dispatch, getState) {
     dispatch(setSearchTerm(searchTerm))
-    dispatch(setFilteredConcerts(filteredMatches(getState().concertData, searchTerm)))
-    dispatch(setConcertsCostMin(getState().filteredConcerts))
-    dispatch(setConcertsCostMax(getState().filteredConcerts))
+    if (searchTerm !== '') {
+      dispatch(setConcertsCostMin(getState().filteredConcerts))
+      dispatch(setConcertsCostMax(getState().filteredConcerts))
+    }
+    dispatch(setFilteredConcerts(filteredMatches(getState().concertData, getState().searchTerm, getState().searchCost)))
   }
 }
 
