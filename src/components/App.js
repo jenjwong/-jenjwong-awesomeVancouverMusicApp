@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from './store';
-import Main from './components/Main';
+
+import Main from './Main';
 // import AsynchRoute from './AsynchRoute'
 import { BrowserRouter, Match, Miss } from 'react-router'
-import './css/normalize.css';
-import './css/App.css';
+import '../css/normalize.css';
+import '../css/App.css';
+
+
 
 if (global) {
   global.System = {import () {}}
@@ -14,8 +14,7 @@ if (global) {
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <div>
+    <div>
         <Match
           exactly pattern='/'
           component={Main} />
@@ -24,8 +23,7 @@ const App = () => {
 
         } /> */}
         {/* <Miss component={Main} /> */}
-      </div>
-    </Provider>
+    </div>
   )
 }
 

@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import EventsListEntry from './EventsListEntry';
 import { connect } from 'react-redux';
-import { handleFilterUpdate } from '../utilities/filterHelpers';
-import { setConcertsCostMin, setConcertsCostMax } from '../actionCreators';
+import *  as filterHelpers from '../utilities/filterHelpers';
+import * as actionCreators from '../actionCreators';
+const { handleFilterUpdate } = filterHelpers;
+const { setConcertsCostMin, setConcertsCostMax } = actionCreators;
 
 const EventsList = ({ concerts }) => {
   return (
@@ -33,10 +35,8 @@ EventsList.propTypes = {
   concerts: PropTypes.arrayOf(PropTypes.object),
 };
 
-const mapStateToProps = (state, dispatch) => {
-  return {
-    concerts: state.filteredConcerts
-  }
-};
+const mapStateToProps = (state, dispatch) => ({
+  concerts: state.filteredConcerts
+});
 
 export default connect(mapStateToProps)(EventsList);

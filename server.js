@@ -10,7 +10,7 @@ const fs = require('fs')
 const PORT = 5050
 const baseTemplate = fs.readFileSync('./public/index.html')
 const template = _.template(baseTemplate)
-const App = require('./src/App').default
+const Root = require('./src/components/Root').default
 var jsdom = require('jsdom').jsdom;
 global.document = jsdom('');
 global.window = document.defaultView;
@@ -27,15 +27,14 @@ server.use((req, res) => {
     const context = ReactRouter.createServerRenderContext()
     var body = ReactDOMServer.renderToString(
       React.createElement(ServerRouter, {location: req.url, context: context},
-        React.createElement(App)
+        React.createElement(Root)
       )
     )
   }
-
 
   res.write(template({body: body}))
   res.end()
 })
 
-// console.log('listening on port', PORT)
+console.log('listening on port', PORT)
 server.listen(PORT)

@@ -1,9 +1,12 @@
 import debounce from 'lodash/debounce';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax, isCostSpecified, handleSearch } from '../actionCreators';
-import { findMinMax, filterByCost, filterByTypeahead, displayMin } from '../utilities/filterHelpers';
-import { isSmallScreen, isFree } from '../utilities/utils';
+import * as actionCreators from '../actionCreators';
+import * as utils from '../utilities/utils';
+const { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax, isCostSpecified, handleSearch } = actionCreators;
+import * as filterHelpers from  '../utilities/filterHelpers';
+const { findMinMax, filterByCost, filterByTypeahead, displayMin } = filterHelpers;
+const { isSmallScreen, isFree } = utils;
 import PriceRangeInput from './PriceRangeInput';
 
 class Filters extends Component {
@@ -49,7 +52,7 @@ class Filters extends Component {
     if (!this.props.isCostSpecified && this.rangeInput) {
       this.rangeInput.value = this.props.max;
     }
-    
+
     return (
       <div className="filters-container">
         <div className="typeahead-container">

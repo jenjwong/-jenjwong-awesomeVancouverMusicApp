@@ -1,5 +1,6 @@
 import React from 'react';
-import { isSmallScreen } from '../utilities/utils';
+import * as utils from '../utilities/utils';
+const { isSmallScreen } = utils;
 
 const PriceRangeInput = (min, max, searchCost, handleCostRangeInputChange) => {
   if (isSmallScreen()) {

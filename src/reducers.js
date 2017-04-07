@@ -1,8 +1,10 @@
-import { FETCH_CONCERT_DATA, SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED, SET_FILTERED_CONCERTS } from './actions'
+import * as actions from './actions';
+const { FETCH_CONCERT_DATA, SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED, SET_FILTERED_CONCERTS } = actions;
 
 const DEFAULT_STATE = {
   searchTerm: '',
   concertData: [],
+  concertsById: {id: {}},
   filteredConcerts: [],
   concertsCostMin: 0,
   concertsCostMax: 100,

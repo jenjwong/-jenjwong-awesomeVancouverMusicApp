@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import SimilarArtistsList from './SimilarArtistsList';
 import TitleList from './TitleList';
 import InfoDropDown from './InfoDropDown';
-import { dayToEnglish, isCover, textClamp } from '../utilities/utils';
+import * as utils from '../utilities/utils';
+const { dayToEnglish, isCover, textClamp } = utils;
 
 class EventsListEntry extends Component {
   static propTypes = {

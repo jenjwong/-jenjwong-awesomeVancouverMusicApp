@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import { isSmallScreen } from '../utilities/utils';
+
+import * as utils from '../utilities/utils';
+const { isSmallScreen } = utils;
 
 const TitleList = ({ titles, index, id }) => {
   return (

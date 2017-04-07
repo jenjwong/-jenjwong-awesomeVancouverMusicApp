@@ -2,9 +2,9 @@ import { FETCH_CONCERT_DATA, SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST
 import get from './utilities/axiosHelpers.js';
 import { sortByDate, findMinMax, filteredMatches } from './utilities/filterHelpers';
 
-export function setConcertData (concertData) {
-  return { type: FETCH_CONCERT_DATA, concertData }
-}
+export const setConcertData = (concertData) => ({
+  type: FETCH_CONCERT_DATA, concertData
+})
 
 export function fetchConcertData (url) {
   return function (dispatch) {
@@ -18,9 +18,9 @@ export function fetchConcertData (url) {
   }
 };
 
-export function setSearchTerm (searchTerm) {
-  return { type: SET_SEARCH_TERM, searchTerm }
-}
+export const setSearchTerm = (searchTerm) => ({
+  type: SET_SEARCH_TERM, searchTerm
+})
 
 export function setFilteredConcerts (filteredConcertData) {
   return { type: SET_FILTERED_CONCERTS, filteredConcertData }
