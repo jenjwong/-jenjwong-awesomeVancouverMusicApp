@@ -8,7 +8,7 @@ const { setConcertsCostMin, setConcertsCostMax } = actionCreators;
 
 const EventsList = ({ concerts }) => {
   return (
-    <div ref={() => 'list'} className="events-list">
+    <div className="events-list">
       <ul>
         {concerts && Object.keys(concerts).map((concert, index) =>
           <EventsListEntry
@@ -35,8 +35,4 @@ EventsList.propTypes = {
   concerts: PropTypes.arrayOf(PropTypes.object),
 };
 
-const mapStateToProps = (state, dispatch) => ({
-  concerts: state.filteredConcerts
-});
-
-export default connect(mapStateToProps)(EventsList);
+export default EventsList;

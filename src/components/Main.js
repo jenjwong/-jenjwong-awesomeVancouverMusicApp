@@ -10,16 +10,8 @@ import { fetchConcertData } from '../actionCreators'
 const concertData = require('../../server/data/productionBetaData');
 
 class Main extends Component {
-  constructor() {
-    super();
-    this.state = {
-      concertData,
-      concerts: {},
-    };
-  }
 
   componentDidMount() {
-    this.props.dispatch(fetchConcertData(`http://demo5873748.mockable.io/`))
     document.addEventListener('touchstart', () => {}, true);
   }
 
@@ -29,43 +21,37 @@ class Main extends Component {
   }
 
   render() {
+    console.log(this.props.concerts, 'props in main')
     return (
       <div>
-        {/* <header>
+        <header>
           <div className="header-container">
             <AppLogo />
-             <Filters
+             {/* <Filters
               concertData={this.props.concertData}
               concerts={this.props.concertData}
               handleFilters={this.handleFilters}
-            />
+            /> */}
           </div>
         </header>
         <div className="main-view-wrapper">
           <div className="main-view-left" />
           <div className="main-view-center">
             <EventsList
-              // concerts={this.state.concerts}
+              concerts={this.props.concerts}
             />
             <div className="decal-logo-container-mobile">
-              <img src={venueDecalLogo} className="decal-logo-mobile" alt="logo" />
             </div>
           </div>
           <div className="main-view-right">
             <div className="decal-logo-container">
-              <img src={venueDecalLogo} className="decal-logo" alt="logo" />
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    concertData: state.concertData
-  }
-};
 
-export default connect(mapStateToProps)(Main)
+export default Main;

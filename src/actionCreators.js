@@ -9,11 +9,10 @@ export const setConcertData = (concertData) => ({
 export function fetchConcertData (url) {
   return function (dispatch) {
     get(url, (data) => {
-        dispatch(setConcertData(sortByDate(data)))
-        dispatch(setConcertsCostMin(data))
-        dispatch(setConcertsCostMax(data))
-        dispatch(setSearchCost(findMinMax(data)[1]))
-        dispatch(setFilteredConcerts(sortByDate(data)))
+        dispatch(setConcertData(data))
+        dispatch(setConcertsCostMin(data.concerts))
+        dispatch(setConcertsCostMax(data.concerts))
+        dispatch(setSearchCost(findMinMax(data.concerts)[1]))
     })
   }
 };
@@ -26,16 +25,47 @@ export function setFilteredConcerts (filteredConcertData) {
   return { type: SET_FILTERED_CONCERTS, filteredConcertData }
 }
 
-export function handleSearch (searchTerm, costSearch) {
-  return function (dispatch, getState) {
-    dispatch(setSearchTerm(searchTerm))
-    dispatch(setFilteredConcerts(filteredMatches(getState().concertData, searchTerm, costSearch)))
-    if (searchTerm !== '') {
-      dispatch(setConcertsCostMin(getState().filteredConcerts))
-      dispatch(setConcertsCostMax(getState().filteredConcerts))
+function batchActions(...actions) {
+  return {
+    typs: 'BATCH_ACTIONS',
+    actions: actions,
+  };
+}
+
+function enableBatching(reducer) {
+  return function batchingReducer(state, action) {
+    switch (action.type) {
+      case 'BATCH_ACTIONS':
+        return action.actions.reduce(reducer,state);
+      default: reducer(action, state);
     }
   }
 }
+
+export function handleSearch (searchTerm, costSearch) {
+  return function (dispatch, getState) {
+    batchActions(
+      dispatch(setSearchTerm(searchTerm)),
+      dispatch(setFilteredConcerts(filteredMatches(getState().concertData, searchTerm, costSearch)))
+    )
+    if (searchTerm !== '') {
+      batchActions(
+        dispatch(setConcertsCostMin(getState().filteredConcerts)),
+        dispatch(setConcertsCostMax(getState().filteredConcerts))
+      )
+    }
+  }
+}
+// export function handleSearch (searchTerm, costSearch) {
+//   return function (dispatch, getState) {
+//     dispatch(setSearchTerm(searchTerm))
+//     dispatch(setFilteredConcerts(filteredMatches(getState().concertData, searchTerm, costSearch)))
+//     if (searchTerm !== '') {
+//       dispatch(setConcertsCostMin(getState().filteredConcerts))
+//       dispatch(setConcertsCostMax(getState().filteredConcerts))
+//     }
+//   }
+// }
 
 export function setSearchCost (searchCost) {
   return { type: SET_SEARCH_COST, searchCost }

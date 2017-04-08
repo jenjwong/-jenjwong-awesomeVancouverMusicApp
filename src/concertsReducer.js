@@ -1,48 +1,35 @@
 import * as actions from './actions';
 const { FETCH_CONCERT_DATA, SET_FILTERED_CONCERTS } = actions;
 
+import { normalize, schema } from 'normalizr';
+
+
+const myData = { concerts: [ { id: 1 }, { id: 2 } ] };
+const concert = new schema.Entity('concerts');
+const mySchema = { concerts: [ concert ] }
+// const normalizedData = normalize(myData, mySchema);
+
+
 
 const DEFAULT_STATE = {
-  concertData: [],
-  filteredConcerts: []
+  concertsDictionary: [],
+  filteredConcertsArray: [],
+  concertsArray: [],
 }
 
+// should filtered set data go here?
 const setConcertData = (state, action) => {
-
   const newState = {}
-  Object.assign(newState, state, {concertData: action.concertData})
-
+  const normalizedData = normalize(action.concertData, mySchema);
+  Object.assign(newState, state, {concertsDictionary: normalizedData.entities.concerts, concertsArray: normalizedData.result.concerts, filteredConcertsArray: normalizedData.result.concerts })
   return newState
 }
-
-// const setConcertData = (state, action) => {
-//   const newOMDBData = {}
-//   Object.assign(newOMDBData, state.concertData, {'concerts': action.concertData})
-//   console.log('all', newOMDBData)
-//   const newState = {}
-//   Object.assign(newState, state, {omdbData: newOMDBData})
-//   return newState
-// }
 
 const setFilteredConcerts = (state = [], action) => {
   const newState = {}
-  Object.assign(newState, state, {filteredConcerts: action.filteredConcertData})
+  Object.assign(newState, state, {filteredConcertsArray: action.filteredConcertData})
   return newState
 }
-// const setConcertData = (state, action) => {
-//
-//   const newState = {}
-//   Object.assign(newState, state, {concertData: action.concertData})
-//
-//   return newState
-// }
-//
-// const setFilteredConcerts = (state = [], action) => {
-//   const newState = {}
-//   Object.assign(newState, state, {filteredConcerts: action.filteredConcertData})
-//   return newState
-// }
-
 
 const concertsReducer =  (state = DEFAULT_STATE, action) => {
   switch (action.type) {

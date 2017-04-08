@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Main from './Main';
+import MainContainer from './MainContainer';
 // import AsynchRoute from './AsynchRoute'
 import { Match, Miss } from 'react-router'
 import '../css/normalize.css';
@@ -17,7 +17,7 @@ const App = () => {
     <div>
         <Match
           exactly pattern='/'
-          component={Main} />
+          component={MainContainer} />
           {/* component={(props) => <AsynchRoute props={props}
           loadingPromise={System.import('./Main')} />
 
