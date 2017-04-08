@@ -57,6 +57,7 @@ const isCostSpecified = (state, action) => {
 
 
 const filtersReducer = (state = DEFAULT_STATE, action) => {
+  console.log('filtersReducer')
   switch (action.type) {
     case SET_SEARCH_TERM:
       return setSearchTerm(state, action)

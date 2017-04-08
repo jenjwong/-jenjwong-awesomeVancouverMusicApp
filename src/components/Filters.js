@@ -18,7 +18,7 @@ class Filters extends Component {
   static propTypes = {
     concertData: PropTypes.arrayOf(PropTypes.object),
     handleFilters: PropTypes.func,
-    concerts: PropTypes.arrayOf(PropTypes.object),
+    concerts: PropTypes.arrayOf(PropTypes.string),
     dispatch: PropTypes.func,
   }
 
@@ -37,7 +37,6 @@ class Filters extends Component {
     if (!this.props.isCostSpecified) {
       this.props.dispatch(isCostSpecified(true))
     }
-    this.props.dispatch(setSearchCost(event.target.value))
     this.props.dispatch(handleSearch('', event.target.value))
   }
 
@@ -58,6 +57,7 @@ class Filters extends Component {
 
 
   render() {
+    console.log('Filters.js rendered')
     const { searchTerm, searchCost, min, max } = this.props
 
 

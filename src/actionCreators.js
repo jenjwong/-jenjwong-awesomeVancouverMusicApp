@@ -49,15 +49,18 @@ export function handleSearch (searchTerm, costSearch) {
   return function (dispatch, getState) {
     const concerts = getState().concerts.concertsArray.map(key => getState().concerts.concertsDictionary[key])
     const filteredConcerts = filteredMatches(concerts, searchTerm, costSearch);
-    batchActions(
-      dispatch(setSearchTerm(searchTerm)),
+      dispatch(setSearchTerm(searchTerm))
       dispatch(setFilteredConcerts(filteredConcerts.map(concert => concert.id)))
-    )
+    // batchActions(
+    //   dispatch(setSearchTerm(searchTerm)),
+    //   dispatch(setFilteredConcerts(filteredConcerts.map(concert => concert.id)))
+    // )
+    if (costSearch !== undefined) {
+      dispatch(setSearchCost(costSearch))
+    }
     if (searchTerm !== '') {
-      batchActions(
-        dispatch(setConcertsCostMin(filteredConcerts)),
+        dispatch(setConcertsCostMin(filteredConcerts))
         dispatch(setConcertsCostMax(filteredConcerts))
-      )
     }
   }
 }
@@ -75,7 +78,6 @@ export function setConcertsCostMin (concerts) {
 
 export function setConcertsCostMax (concerts) {
   const max = findMinMax(concerts)[1]
-  console.log(max)
   return { type: SET_CONCERTS_COST_MAX, max }
 }
 export function isCostSpecified (bool) {

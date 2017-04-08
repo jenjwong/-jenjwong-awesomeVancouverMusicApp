@@ -50,6 +50,7 @@ class EventsListEntry extends Component {
 
   render() {
     const { titles, ticketLink, date, venue, cost, photo, startTime, youTube, similarArtists, artistSummary, id } = this.props;
+    console.log('filterList', id)
     const showCost = isCover(cost);
     return (
       <li className="event-list-entry">

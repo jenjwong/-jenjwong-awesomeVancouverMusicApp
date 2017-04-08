@@ -6,7 +6,8 @@ import * as actionCreators from '../actionCreators';
 const { handleFilterUpdate } = filterHelpers;
 const { setConcertsCostMin, setConcertsCostMax } = actionCreators;
 
-const EventsList = ({ concerts }) => {
+const EventsList = ({concerts}) => {
+  console.log('EventsList rendered')
   return (
     <div className="events-list">
       <ul>
