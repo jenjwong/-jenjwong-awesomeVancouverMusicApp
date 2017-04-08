@@ -31,7 +31,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <header>
+        {/* <header>
           <div className="header-container">
             <AppLogo />
              <Filters
@@ -48,15 +48,15 @@ class Main extends Component {
               // concerts={this.state.concerts}
             />
             <div className="decal-logo-container-mobile">
-              {/* <img src={venueDecalLogo} className="decal-logo-mobile" alt="logo" /> */}
+              <img src={venueDecalLogo} className="decal-logo-mobile" alt="logo" />
             </div>
           </div>
           <div className="main-view-right">
             <div className="decal-logo-container">
-              {/* <img src={venueDecalLogo} className="decal-logo" alt="logo" /> */}
+              <img src={venueDecalLogo} className="decal-logo" alt="logo" />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

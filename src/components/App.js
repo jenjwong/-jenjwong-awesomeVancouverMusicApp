@@ -2,7 +2,7 @@ import React from 'react';
 
 import Main from './Main';
 // import AsynchRoute from './AsynchRoute'
-import { BrowserRouter, Match, Miss } from 'react-router'
+import { Match, Miss } from 'react-router'
 import '../css/normalize.css';
 import '../css/App.css';
 

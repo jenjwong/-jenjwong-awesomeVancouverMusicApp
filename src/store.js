@@ -7,6 +7,11 @@ const configureStore = () => {
     applyMiddleware(thunk),
     typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : (f) => f
   ));
+
+  // TODO: configure conscriptons for local storage...
+
+
+
   return store;
 }
 

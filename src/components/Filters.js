@@ -24,10 +24,11 @@ class Filters extends Component {
   }
 
   handleCostRangeInputChange = (event) => {
-    console.log('handle range change called')
+    if (!this.props.isCostSpecified) {
+      this.props.dispatch(isCostSpecified(true))
+    }
     this.props.dispatch(setSearchCost(event.target.value))
     this.props.dispatch(handleSearch('', event.target.value))
-    this.props.dispatch(isCostSpecified(true))
   }
 
   // returns searchedCost or max if no search cost is entered
@@ -48,6 +49,7 @@ class Filters extends Component {
 
   render() {
     const { searchTerm, searchCost, min, max } = this.props
+    console.log(this.props)
 
     if (!this.props.isCostSpecified && this.rangeInput) {
       this.rangeInput.value = this.props.max;

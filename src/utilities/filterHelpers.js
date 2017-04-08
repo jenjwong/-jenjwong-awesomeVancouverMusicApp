@@ -54,5 +54,5 @@ export const handleFilterUpdate = (concertData, typeAheadSearch, costSearch, han
   // this.props.dispatch(setConcertsCostMin(this.props.concertData))
   // this.props.dispatch(setConcertsCostMax(this.props.concertData))
   const filteredConcerts = filteredMatches(concertData, typeAheadSearch, costSearch);
-  return filteredConcerts
+  return filteredConcerts.map(concert => concert.id)
 };

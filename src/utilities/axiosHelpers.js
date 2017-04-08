@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const get = (url, cb) => {
+const get = (url, successCB, ErrorCB ) => {
   axios.get(url)
   .then((response) => {
-    cb(response.data);
+    console.log(response, 'inside fetch')
+    successCB(response.data);
   })
   .catch((error) => {
-    console.error('axios error', error)
+    ErrorCB('axios error', error)
   })
 }
 
