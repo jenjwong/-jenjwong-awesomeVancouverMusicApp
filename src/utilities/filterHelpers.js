@@ -49,10 +49,3 @@ export const filteredMatches = (concerts, wordToMatch, maxPrice) => {
 
 
 export const displayMin = min => min === 0 ? 'Free' : `$${min}`;
-
-export const handleFilterUpdate = (concertData, typeAheadSearch, costSearch, handleFilters) => {
-  // this.props.dispatch(setConcertsCostMin(this.props.concertData))
-  // this.props.dispatch(setConcertsCostMax(this.props.concertData))
-  const filteredConcerts = filteredMatches(concertData, typeAheadSearch, costSearch);
-  return filteredConcerts.map(concert => concert.id)
-};

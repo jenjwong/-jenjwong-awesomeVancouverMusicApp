@@ -9,7 +9,6 @@ class MainContainer extends Component {
     this.props.dispatch(fetchConcertData(`http://demo5496710.mockable.io/`))
   }
   render() {
-    console.log(this.props.concerts, 'props in main container')
     return (
       <Main concerts={this.props.concerts}/>
     );
@@ -18,8 +17,8 @@ class MainContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    concerts: state.concerts.concertsArray.map(key => state.concerts.concertsDictionary[key])
+    concerts: state.concerts.filteredConcertsArray.map(key => state.concerts.concertsDictionary[key])
   }
 };
 
-export default connect(mapStateToProps)(MainContainer)
+export default connect(mapStateToProps)(MainContainer);

@@ -16,22 +16,13 @@ class Main extends Component {
   }
 
 
-  handleFilters = (filtered) => {
-    this.setState({ concerts: filtered });
-  }
-
   render() {
-    console.log(this.props.concerts, 'props in main')
     return (
       <div>
         <header>
           <div className="header-container">
             <AppLogo />
-             {/* <Filters
-              concertData={this.props.concertData}
-              concerts={this.props.concertData}
-              handleFilters={this.handleFilters}
-            /> */}
+             <Filters />
           </div>
         </header>
         <div className="main-view-wrapper">

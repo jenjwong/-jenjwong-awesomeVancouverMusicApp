@@ -1,5 +1,6 @@
 import { FETCH_CONCERT_DATA, SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED, SET_FILTERED_CONCERTS } from './actions';
 import get from './utilities/axiosHelpers.js';
+import _throttle from 'lodash/throttle';
 import { sortByDate, findMinMax, filteredMatches } from './utilities/filterHelpers';
 
 export const setConcertData = (concertData) => ({
@@ -42,30 +43,26 @@ function enableBatching(reducer) {
   }
 }
 
+
+
 export function handleSearch (searchTerm, costSearch) {
   return function (dispatch, getState) {
+    const concerts = getState().concerts.concertsArray.map(key => getState().concerts.concertsDictionary[key])
+    const filteredConcerts = filteredMatches(concerts, searchTerm, costSearch);
     batchActions(
       dispatch(setSearchTerm(searchTerm)),
-      dispatch(setFilteredConcerts(filteredMatches(getState().concertData, searchTerm, costSearch)))
+      dispatch(setFilteredConcerts(filteredConcerts.map(concert => concert.id)))
     )
     if (searchTerm !== '') {
       batchActions(
-        dispatch(setConcertsCostMin(getState().filteredConcerts)),
-        dispatch(setConcertsCostMax(getState().filteredConcerts))
+        dispatch(setConcertsCostMin(filteredConcerts)),
+        dispatch(setConcertsCostMax(filteredConcerts))
       )
     }
   }
 }
-// export function handleSearch (searchTerm, costSearch) {
-//   return function (dispatch, getState) {
-//     dispatch(setSearchTerm(searchTerm))
-//     dispatch(setFilteredConcerts(filteredMatches(getState().concertData, searchTerm, costSearch)))
-//     if (searchTerm !== '') {
-//       dispatch(setConcertsCostMin(getState().filteredConcerts))
-//       dispatch(setConcertsCostMax(getState().filteredConcerts))
-//     }
-//   }
-// }
+
+
 
 export function setSearchCost (searchCost) {
   return { type: SET_SEARCH_COST, searchCost }
@@ -78,6 +75,7 @@ export function setConcertsCostMin (concerts) {
 
 export function setConcertsCostMax (concerts) {
   const max = findMinMax(concerts)[1]
+  console.log(max)
   return { type: SET_CONCERTS_COST_MAX, max }
 }
 export function isCostSpecified (bool) {

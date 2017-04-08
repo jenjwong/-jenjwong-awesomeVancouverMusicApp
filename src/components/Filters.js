@@ -1,4 +1,4 @@
-import debounce from 'lodash/debounce';
+import _throttle from 'lodash/throttle';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actionCreators';
@@ -10,6 +10,10 @@ const { isSmallScreen, isFree } = utils;
 import PriceRangeInput from './PriceRangeInput';
 
 class Filters extends Component {
+  constructor() {
+    super();
+    this.throttleHandleCostRangeInputChange = _throttle(this.handleCostRangeInputChange, 17)
+  }
 
   static propTypes = {
     concertData: PropTypes.arrayOf(PropTypes.object),
@@ -22,6 +26,12 @@ class Filters extends Component {
   handleSearchInputChange = (event) => {
     this.props.dispatch(handleSearch(event.target.value))
   }
+
+  throttledHandleSearchInputChangeHandler = (event) => {
+    event.persist()
+    this.throttleHandleCostRangeInputChange(event)
+  }
+
 
   handleCostRangeInputChange = (event) => {
     if (!this.props.isCostSpecified) {
@@ -49,7 +59,7 @@ class Filters extends Component {
 
   render() {
     const { searchTerm, searchCost, min, max } = this.props
-    console.log(this.props)
+
 
     if (!this.props.isCostSpecified && this.rangeInput) {
       this.rangeInput.value = this.props.max;
@@ -77,7 +87,7 @@ class Filters extends Component {
                 <span className="cost-min">{displayMin(this.props.min)}</span>}
             </span>
             <span className="cost-input-span">
-              {PriceRangeInput(min, max, searchCost, this.handleCostRangeInputChange)}
+              {PriceRangeInput(min, max, searchCost, this.throttledHandleSearchInputChangeHandler)}
             </span>
             <span className="cost-max-container">
               {this.props.max !== -Infinity && <span className="cost-max">${this.props.max}</span>}
@@ -91,12 +101,12 @@ class Filters extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    searchTerm: state.searchTerm,
-    searchCost: state.searchCost,
-    concertData: state.concertData,
-    min: state.concertsCostMin,
-    max: state.concertsCostMax,
-    isCostSpecified: state.isCostSpecified,
+    searchTerm: state.filters.searchTerm,
+    searchCost: state.filters.searchCost,
+    concerts: state.concerts.filteredConcertsArray,
+    min: state.filters.concertsCostMin,
+    max: state.filters.concertsCostMax,
+    isCostSpecified: state.filters.isCostSpecified,
   }
 };
 
