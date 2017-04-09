@@ -28,6 +28,10 @@ class EventsListEntry extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.toggled !== nextState.toggled || this.props.id !== nextProps.id
+  }
+
   setIsClicked() {
     if (this.state.isClicked === 'raised') {
       this.setState({ isClicked: 'lowered' });
@@ -50,7 +54,7 @@ class EventsListEntry extends Component {
 
   render() {
     const { titles, ticketLink, date, venue, cost, photo, startTime, youTube, similarArtists, artistSummary, id } = this.props;
-    console.log('filterList', id)
+    console.log('filterList', id, this.state.toggled)
     const showCost = isCover(cost);
     return (
       <li className="event-list-entry">
