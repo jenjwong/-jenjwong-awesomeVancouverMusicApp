@@ -1,5 +1,5 @@
 import * as actions from './actions';
-const { SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED } = actions;
+const { SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED, BATCH_ACTIONS } = actions;
 
 const DEFAULT_STATE = {
   searchTerm: '',
@@ -57,7 +57,7 @@ const isCostSpecified = (state, action) => {
 
 
 const filtersReducer = (state = DEFAULT_STATE, action) => {
-  console.log('filtersReducer')
+  console.log('filtersReducer', state)
   switch (action.type) {
     case SET_SEARCH_TERM:
       return setSearchTerm(state, action)
@@ -74,4 +74,4 @@ const filtersReducer = (state = DEFAULT_STATE, action) => {
   }
 }
 
-export default filtersReducer;
+export default filtersReducer
