@@ -1,15 +1,6 @@
 import * as actions from './actions';
 const { FETCH_CONCERT_DATA, SET_FILTERED_CONCERTS } = actions;
 
-import { normalize, schema } from 'normalizr';
-
-
-const myData = { concerts: [ { id: 1 }, { id: 2 } ] };
-const concert = new schema.Entity('concerts');
-const mySchema = { concerts: [ concert ] }
-// const normalizedData = normalize(myData, mySchema);
-
-
 
 const DEFAULT_STATE = {
   concertsDictionary: [],
@@ -20,8 +11,8 @@ const DEFAULT_STATE = {
 // should filtered set data go here?
 const setConcertData = (state, action) => {
   const newState = {}
-  const normalizedData = normalize(action.concertData, mySchema);
-  Object.assign(newState, state, {concertsDictionary: normalizedData.entities.concerts, concertsArray: normalizedData.result.concerts, filteredConcertsArray: normalizedData.result.concerts })
+  const normalized = action.concertData
+  Object.assign(newState, state, {concertsDictionary: normalized.entities.concerts, concertsArray: normalized.result.concerts, filteredConcertsArray: normalized.result.concerts })
   return newState
 }
 

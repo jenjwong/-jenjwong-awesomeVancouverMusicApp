@@ -58,8 +58,11 @@ class Filters extends Component {
 
   render() {
     console.log('Filters.js rendered')
-    const { searchTerm, searchCost, min, max } = this.props
+    let { searchTerm, searchCost, min, max } = this.props
 
+    if (min === max) {
+      searchCost = min;
+    }
 
     if (!this.props.isCostSpecified && this.rangeInput) {
       this.rangeInput.value = this.props.max;
