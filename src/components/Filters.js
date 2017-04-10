@@ -1,18 +1,20 @@
-import _throttle from 'lodash/throttle';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import * as utils from '../utilities/utils';
-const { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax, isCostSpecified, handleSearch } = actionCreators;
 import * as filterHelpers from  '../utilities/filterHelpers';
-const { findMinMax, filterByCost, filterByTypeahead, displayMin } = filterHelpers;
-const { isSmallScreen, isFree } = utils;
+import _throttle from 'lodash/throttle';
 import PriceRangeInput from './PriceRangeInput';
+import TypeInput from './TypeInput';
+
+const { isCostSpecified, handleSearch } = actionCreators;
+const { findMinMax, filterByCost, filterByTypeahead, displayMin } = filterHelpers;
+const { displaySearchCost } = utils;
 
 class Filters extends Component {
   constructor() {
     super();
-    this.throttleHandleCostRangeInputChange = _throttle(this.handleCostRangeInputChange, 17)
+    this.throttleHandleCostRangeInputChange = _throttle(this.handleCostRangeInputChange, 17);
   }
 
   static propTypes = {
@@ -22,21 +24,15 @@ class Filters extends Component {
     dispatch: PropTypes.func,
   }
 
-
-  handleSearchInputChange = (event) => {
-    this.props.dispatch(handleSearch(event.target.value))
-  }
+  handleSearchInputChange = e => this.props.dispatch(handleSearch(e.target.value));
 
   throttledHandleSearchInputChangeHandler = (event) => {
-    event.persist()
-    this.throttleHandleCostRangeInputChange(event)
+    event.persist();
+    this.throttleHandleCostRangeInputChange(event);
   }
 
-
   handleCostRangeInputChange = (event) => {
-    if (!this.props.isCostSpecified) {
-      this.props.dispatch(isCostSpecified(true))
-    }
+    !this.props.isCostSpecified ? this.props.dispatch(isCostSpecified(true)) :
     this.props.dispatch(handleSearch('', event.target.value))
   }
 
@@ -54,34 +50,24 @@ class Filters extends Component {
     return `${classname} partial-opaque`;
   }
 
-
-
   render() {
-    console.log('Filters.js rendered')
-    let { searchTerm, searchCost, min, max } = this.props
-
-    if (min === max) {
-      searchCost = min;
-    }
-
-    if (!this.props.isCostSpecified && this.rangeInput) {
-      this.rangeInput.value = this.props.max;
-    }
-
+    const { searchTerm, searchCost, min, max, isCostSpecified } = this.props;
     return (
       <div className="filters-container">
         <div className="typeahead-container">
-          <input name="typeAheadString" id="typeAheadString" type="text" className="typed-input" onChange={e => this.handleSearchInputChange(e)} placeholder="Band/SoundsLike/Venue" value={searchTerm}/>
+          <TypeInput searchTerm={this.props.searchTerm} handleSearchInputChange={this.handleSearchInputChange} />
         </div>
         <div className="searched-cost-container-mobile">
           <div className="searched-cost-frame-mobile">
-            <div className={this.isCostActive("searched-cost-mobile")}>{searchCost}</div>
+            <div className={this.isCostActive("searched-cost-mobile")}>
+              {displaySearchCost(searchCost, min, max, isCostSpecified, searchTerm)}
+            </div>
           </div>
         </div>
         <div className={this.isCostActive("cost-input-container")}>
           <div className="price-label-container">
             <span className="searched-cost">
-              {isFree(searchCost)}
+              {displaySearchCost(searchCost, min, max, isCostSpecified, searchTerm)}
             </span>
           </div>
           <span className="cost-input-bar-container">
@@ -90,7 +76,12 @@ class Filters extends Component {
                 <span className="cost-min">{displayMin(this.props.min)}</span>}
             </span>
             <span className="cost-input-span">
-              {PriceRangeInput(min, max, searchCost, this.throttledHandleSearchInputChangeHandler)}
+              <PriceRangeInput
+                max={this.props.max}
+                min={this.props.min}
+                searchCost={this.props.searchCost}
+                handleCostRangeInputChange={this.throttledHandleSearchInputChangeHandler}
+              />
             </span>
             <span className="cost-max-container">
               {this.props.max !== -Infinity && <span className="cost-max">${this.props.max}</span>}
@@ -110,6 +101,7 @@ const mapStateToProps = (state) => {
     min: state.filters.concertsCostMin,
     max: state.filters.concertsCostMax,
     isCostSpecified: state.filters.isCostSpecified,
+    searchTerm: state.filters.searchTerm
   }
 };
 

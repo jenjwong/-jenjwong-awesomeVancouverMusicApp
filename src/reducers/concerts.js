@@ -23,7 +23,6 @@ const setFilteredConcerts = (state = [], action) => {
 };
 
 const concertsReducer = (state = DEFAULT_STATE, action) => {
-  console.log('concerts reducer', action.type);
   switch (action.type) {
     case FETCH_CONCERT_DATA:
       return setConcertData(state, action);

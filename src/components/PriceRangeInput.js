@@ -9,6 +9,7 @@ const PriceRangeInput = ({ min, max, searchCost, handleCostRangeInputChange }) =
       <input
         name="searchedCost"
         type="range"
+        value={searchCost}
         className="cost-input"
         onTouchEnd={e => handleCostRangeInputChange(e)}
         onTouchStart={e => handleCostRangeInputChange(e)}
@@ -33,9 +34,9 @@ const PriceRangeInput = ({ min, max, searchCost, handleCostRangeInputChange }) =
 };
 
 PriceRangeInput.propTypes = {
-  min: PropTypes.num,
-  max: PropTypes.num,
-  searchCost: PropTypes.num,
+  searchCost: PropTypes.number,
+  max: PropTypes.number,
+  min: PropTypes.number,
 };
 
 export default PriceRangeInput;

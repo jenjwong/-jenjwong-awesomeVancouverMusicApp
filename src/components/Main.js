@@ -35,7 +35,7 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-  concerts: PropTypes.arrayOf(PropTypes.objects),
+  concerts: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Main;
