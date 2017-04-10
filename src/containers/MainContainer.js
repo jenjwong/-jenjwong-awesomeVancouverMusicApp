@@ -3,7 +3,6 @@ import Main from '../components/Main';
 import { connect } from 'react-redux';
 import { fetchConcertData } from '../actions/actionCreators';
 import { sortByDate } from '../utilities/filterHelpers';
-// const concertData = require('../../server/data/productionBetaData');
 
 class MainContainer extends Component {
   componentDidMount() {

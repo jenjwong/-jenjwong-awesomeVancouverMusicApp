@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { shallowToJson } from 'enzyme-to-json';
 import VideoList from './VideoList';
 import VideoEntry from './VideoEntry';
 

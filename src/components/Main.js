@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import EventsList from './EventsList';
 import AppLogo from './AppLogo';
 import Filters from './Filters';
-// import venueDecalLogo from '../css/images/bandsNearbyLogo.svg';
 
 class Main extends Component {
   componentDidMount() {

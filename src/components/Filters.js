@@ -10,7 +10,7 @@ import TypeInput from './TypeInput';
 
 
 const { isCostSpecified, handleSearch } = actionCreators;
-const { findMinMax, filterByCost, filterByTypeahead, displayMin } = filterHelpers;
+const { displayMin } = filterHelpers;
 const { displaySearchCost } = utils;
 
 class Filters extends Component {
@@ -103,7 +103,6 @@ const mapStateToProps = (state) => {
     min: state.filters.concertsCostMin,
     max: state.filters.concertsCostMax,
     isCostSpecified: state.filters.isCostSpecified,
-    searchTerm: state.filters.searchTerm
   }
 };
 

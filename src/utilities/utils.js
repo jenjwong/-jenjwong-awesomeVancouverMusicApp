@@ -16,8 +16,6 @@ export const dayToEnglish = (date) => {
   return numToWord[day];
 };
 
-// export const isFree = price => price == 0 ? 'No Cover' : `Price $${price}`;
-
 export const displaySearchCost = (searchCost, min, max, isCostSpecified, isTypedInput) => {
   if (searchCost === 0) {
     return 'No Cover';

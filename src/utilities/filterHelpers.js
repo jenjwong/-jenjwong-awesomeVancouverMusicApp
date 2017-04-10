@@ -45,5 +45,4 @@ export const filteredMatches = (concerts, wordToMatch, maxPrice) => {
   return filterByCost(typeMatch, maxPrice);
 };
 
-
 export const displayMin = min => min === 0 ? 'Free' : `$${min}`;
