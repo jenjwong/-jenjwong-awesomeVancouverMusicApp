@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import sanitize from 'sanitize-caja';
 import * as actionCreators from '../actions/actionCreators';
 import * as utils from '../utilities/utils';
 import * as filterHelpers from  '../utilities/filterHelpers';
 import _throttle from 'lodash/throttle';
 import PriceRangeInput from './PriceRangeInput';
 import TypeInput from './TypeInput';
+
 
 const { isCostSpecified, handleSearch } = actionCreators;
 const { findMinMax, filterByCost, filterByTypeahead, displayMin } = filterHelpers;
@@ -24,7 +26,7 @@ class Filters extends Component {
     dispatch: PropTypes.func,
   }
 
-  handleSearchInputChange = e => this.props.dispatch(handleSearch(e.target.value));
+  handleSearchInputChange = e => this.props.dispatch(handleSearch(sanitize(e.target.value)));
 
   throttledHandleSearchInputChangeHandler = (event) => {
     event.persist();
