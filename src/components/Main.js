@@ -4,7 +4,7 @@ import AppLogo from './AppLogo';
 import Filters from './Filters';
 // import venueDecalLogo from '../css/images/bandsNearbyLogo.svg';
 import { connect } from 'react-redux';
-import { fetchConcertData } from '../actionCreators'
+import { fetchConcertData } from '../actions/actionCreators'
 
 
 const concertData = require('../../server/data/productionBetaData');
@@ -14,7 +14,6 @@ class Main extends Component {
   componentDidMount() {
     document.addEventListener('touchstart', () => {}, true);
   }
-
 
   render() {
     return (
@@ -43,6 +42,5 @@ class Main extends Component {
     );
   }
 }
-
 
 export default Main;

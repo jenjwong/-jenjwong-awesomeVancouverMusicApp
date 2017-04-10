@@ -1,4 +1,4 @@
-import * as actions from './actions';
+import * as actions from '../actions/actions';
 const { FETCH_CONCERT_DATA, SET_FILTERED_CONCERTS } = actions;
 
 

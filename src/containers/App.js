@@ -3,8 +3,8 @@ import React from 'react';
 import MainContainer from './MainContainer';
 // import AsynchRoute from './AsynchRoute'
 import { Match, Miss } from 'react-router'
-import '../css/normalize.css';
-import '../css/App.css';
+import '../../css/normalize.css';
+import '../../css/App.css';
 
 
 

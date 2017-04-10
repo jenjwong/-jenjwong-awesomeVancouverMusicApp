@@ -1,7 +1,7 @@
 import _throttle from 'lodash/throttle';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actionCreators';
+import * as actionCreators from '../actions/actionCreators';
 import * as utils from '../utilities/utils';
 const { setSearchTerm, setSearchCost, setConcertCostMin, setConcertCostMax, isCostSpecified, handleSearch } = actionCreators;
 import * as filterHelpers from  '../utilities/filterHelpers';

@@ -1,4 +1,4 @@
-import * as actions from './actions';
+import * as actions from '../actions/actions';
 const { SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED, BATCH_ACTIONS } = actions;
 
 const DEFAULT_STATE = {

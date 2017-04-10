@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import EventsListEntry from './EventsListEntry';
 import { connect } from 'react-redux';
 import *  as filterHelpers from '../utilities/filterHelpers';
-import * as actionCreators from '../actionCreators';
+import * as actionCreators from '../actions/actionCreators';
 const { handleFilterUpdate } = filterHelpers;
 const { setConcertsCostMin, setConcertsCostMax } = actionCreators;
 
