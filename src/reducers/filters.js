@@ -1,5 +1,8 @@
 import * as actions from '../actions/actions';
-const { SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED, BATCH_ACTIONS } = actions;
+import * as utils from './utils';
+
+const { SET_SEARCH_TERM, SET_SEARCH_COST, SET_CONCERTS_COST_MIN, SET_CONCERTS_COST_MAX, IS_COST_SPECIFIED } = actions;
+const { updateObject } = utils;
 
 const DEFAULT_STATE = {
   searchTerm: '',
@@ -9,51 +12,15 @@ const DEFAULT_STATE = {
   isCostSpecified: false,
 };
 
-// function updateObject(oldObject, newValues) {
-//     // Encapsulate the idea of passing a new object as the first parameter
-//     // to Object.assign to ensure we correctly copy data instead of mutating
-//     return Object.assign({}, oldObject, newValues);
-// }
+const setSearchTerm = (state, action) => updateObject(state, { searchTerm: action.searchTerm });
 
+const setSearchCost = (state, action) => updateObject(state, { searchCost: action.searchCost });
 
-// const setConcertData = (state = [], action) => {
-//   return updateObject(state, action);
-// }
-// const setConcertData = (state, action) => {
-//   const newState = {}
-//   Object.assign(newState, state, {concertData: action.concertData})
-//   return newState
-// }
+const setConcertsCostMin = (state, action) => updateObject(state, { concertsCostMin: action.min });
 
-const setSearchTerm = (state, action) => {
-  const newState = {};
-  Object.assign(newState, state, { searchTerm: action.searchTerm });
-  return newState;
-};
+const setConcertsCostMax = (state, action) => updateObject(state, { concertsCostMax: action.max });
 
-const setSearchCost = (state, action) => {
-  const newState = {};
-  Object.assign(newState, state, { searchCost: action.searchCost });
-  return newState;
-};
-
-const setConcertsCostMin = (state, action) => {
-  const newState = {};
-  Object.assign(newState, state, { concertsCostMin: action.min });
-  return newState;
-};
-
-const setConcertsCostMax = (state, action) => {
-  const newState = {};
-  Object.assign(newState, state, { concertsCostMax: action.max });
-  return newState;
-};
-const isCostSpecified = (state, action) => {
-  const newState = {};
-  Object.assign(newState, state, { isCostSpecified: action.bool });
-  return newState;
-};
-
+const isCostSpecified = (state, action) => updateObject(state, { isCostSpecified: action.bool });
 
 const filtersReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {

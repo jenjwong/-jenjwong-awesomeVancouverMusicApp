@@ -1,6 +1,8 @@
 import * as actions from '../actions/actions';
-const { FETCH_CONCERT_DATA, SET_FILTERED_CONCERTS } = actions;
+import * as utils from './utils';
 
+const { FETCH_CONCERT_DATA, SET_FILTERED_CONCERTS } = actions;
+const { updateObject } = utils;
 
 const DEFAULT_STATE = {
   concertsDictionary: [],
@@ -8,18 +10,18 @@ const DEFAULT_STATE = {
   concertsArray: [],
 };
 
-// should filtered set data go here?
 const setConcertData = (state, action) => {
-  const newState = {};
   const normalized = action.concertData;
-  Object.assign(newState, state, { concertsDictionary: normalized.entities.concerts, concertsArray: normalized.result.concerts, filteredConcertsArray: normalized.result.concerts });
-  return newState;
+  return updateObject(state,
+    { concertsDictionary: normalized.entities.concerts,
+      concertsArray: normalized.result.concerts,
+      filteredConcertsArray: normalized.result.concerts,
+    }
+  );
 };
 
-const setFilteredConcerts = (state = [], action) => {
-  const newState = {};
-  Object.assign(newState, state, { filteredConcertsArray: action.filteredConcertData });
-  return newState;
+const setFilteredConcerts = (state, action) => {
+  return updateObject(state, { filteredConcertsArray: action.filteredConcertData });
 };
 
 const concertsReducer = (state = DEFAULT_STATE, action) => {

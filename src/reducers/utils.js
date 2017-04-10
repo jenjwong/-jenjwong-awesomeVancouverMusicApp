@@ -1,7 +1,8 @@
 import * as actions from '../actions/actions';
+
 const { BATCH_ACTIONS } = actions;
 
-function enableBatching(reducer) {
+export const enableBatching = (reducer) => {
   return function batchingReducer(state, action) {
     switch (action.type) {
       case BATCH_ACTIONS:
@@ -10,6 +11,8 @@ function enableBatching(reducer) {
         return reducer(state, action);
     }
   };
-}
+};
 
-export default enableBatching;
+export const updateObject = (oldObject, newValues) => {
+  return Object.assign({}, oldObject, newValues);
+};

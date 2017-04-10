@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import filters from './filters';
 import concerts from './concerts';
-import enableBatching from './enableBatching';
+import { enableBatching } from './utils';
 
 const rootReducer = combineReducers({
   concerts,

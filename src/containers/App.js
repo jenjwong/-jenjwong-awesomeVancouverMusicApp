@@ -19,9 +19,8 @@ const App = () => (
     />
     {/* component={(props) => <AsynchRoute props={props}
           loadingPromise={System.import('./Main')} />
-
-        } /> */}
-    {/* <Miss component={Main} /> */}
+        }
+   <Miss component={Main} /> */}
   </div>
   );
 
