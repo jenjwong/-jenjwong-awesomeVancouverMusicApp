@@ -12,7 +12,7 @@ const SimilarArtistsList = ({ artists }) => (
           index={index}
           collection={collection}
         />
-          ))}
+      ))}
     </div>
   </div>
   );

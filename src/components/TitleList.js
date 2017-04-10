@@ -14,7 +14,7 @@ const TitleList = ({ titles, index, id }) => (
         }, [])}
       </div>}
     {isSmallScreen() && <div>
-      <span key={'supportingBand'} className="supporting-bands-title">{titles[1]}</span>
+      <span className="supporting-bands-title">{titles[1]}</span>
       </div>}
   </div>
   );

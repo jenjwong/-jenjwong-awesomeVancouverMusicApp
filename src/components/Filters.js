@@ -35,7 +35,7 @@ class Filters extends Component {
 
   handleCostRangeInputChange = (event) => {
     !this.props.isCostSpecified ? this.props.dispatch(isCostSpecified(true)) :
-    this.props.dispatch(handleSearch('', event.target.value))
+    this.props.dispatch(handleSearch('', parseInt(event.target.value)))
   }
 
   // returns searchedCost or max if no search cost is entered
