@@ -79,8 +79,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "test-update": "npm run test -- -u",
     "istanbul-coverage": "npm run test -- --coverage",
-    "server-render": "BABEL_ENV=production nodemon server.js",
-    "server": "babel-node ./server.js",
+    "server-render": "BABEL_ENV=production nodemon ./server/server.js",
+    "server": "babel-node ./server/server.js",
     "client": "babel-node start-client.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
