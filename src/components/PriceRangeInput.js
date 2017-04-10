@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import * as utils from '../utilities/utils';
+
 const { isSmallScreen } = utils;
 
-const PriceRangeInput = (min, max, searchCost, handleCostRangeInputChange) => {
+const PriceRangeInput = ({ min, max, searchCost, handleCostRangeInputChange }) => {
   if (isSmallScreen()) {
     return (
       <input
@@ -29,6 +30,12 @@ const PriceRangeInput = (min, max, searchCost, handleCostRangeInputChange) => {
       max={max}
     />
   );
-}
+};
+
+PriceRangeInput.propTypes = {
+  min: PropTypes.num,
+  max: PropTypes.num,
+  searchCost: PropTypes.num,
+};
 
 export default PriceRangeInput;

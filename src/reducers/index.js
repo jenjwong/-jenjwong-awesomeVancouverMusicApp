@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux'
-import filters from './filters'
-import concerts from './concerts'
-import enableBatching from './enableBatching'
+import { combineReducers } from 'redux';
+import filters from './filters';
+import concerts from './concerts';
+import enableBatching from './enableBatching';
 
-const rootReducer = combineReducers ({
+const rootReducer = combineReducers({
   concerts,
-  filters
-})
+  filters,
+});
 
 export default enableBatching(rootReducer);

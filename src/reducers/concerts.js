@@ -6,32 +6,32 @@ const DEFAULT_STATE = {
   concertsDictionary: [],
   filteredConcertsArray: [],
   concertsArray: [],
-}
+};
 
 // should filtered set data go here?
 const setConcertData = (state, action) => {
-  const newState = {}
-  const normalized = action.concertData
-  Object.assign(newState, state, {concertsDictionary: normalized.entities.concerts, concertsArray: normalized.result.concerts, filteredConcertsArray: normalized.result.concerts })
-  return newState
-}
+  const newState = {};
+  const normalized = action.concertData;
+  Object.assign(newState, state, { concertsDictionary: normalized.entities.concerts, concertsArray: normalized.result.concerts, filteredConcertsArray: normalized.result.concerts });
+  return newState;
+};
 
 const setFilteredConcerts = (state = [], action) => {
-  const newState = {}
-  Object.assign(newState, state, {filteredConcertsArray: action.filteredConcertData})
-  return newState
-}
+  const newState = {};
+  Object.assign(newState, state, { filteredConcertsArray: action.filteredConcertData });
+  return newState;
+};
 
-const concertsReducer =  (state = DEFAULT_STATE, action) => {
-  console.log('concerts reducer', action.type)
+const concertsReducer = (state = DEFAULT_STATE, action) => {
+  console.log('concerts reducer', action.type);
   switch (action.type) {
     case FETCH_CONCERT_DATA:
-      return setConcertData(state, action)
+      return setConcertData(state, action);
     case SET_FILTERED_CONCERTS:
-      return setFilteredConcerts(state, action)
+      return setFilteredConcerts(state, action);
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default concertsReducer;

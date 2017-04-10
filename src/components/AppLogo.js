@@ -1,7 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 const AppLogo = () => {
-  console.log('AppLogo Rendered')
   return (
     <div className="app-logo-container">
       <div className="app-logo">BANDS NEARBY</div>

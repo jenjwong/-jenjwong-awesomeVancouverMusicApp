@@ -1,17 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import EventsListEntry from './EventsListEntry';
-import { connect } from 'react-redux';
-import *  as filterHelpers from '../utilities/filterHelpers';
-import * as actionCreators from '../actions/actionCreators';
-const { handleFilterUpdate } = filterHelpers;
-const { setConcertsCostMin, setConcertsCostMax } = actionCreators;
 
-const EventsList = ({concerts}) => {
-  console.log('EventsList rendered')
+const EventsList = ({ concerts }) => {
   return (
     <div className="events-list">
       <ul>
-        {concerts && Object.keys(concerts).map((concert, index) =>
+        {concerts && Object.keys(concerts).map(concert =>
           <EventsListEntry
             key={concerts[concert].id}
             id={concerts[concert].id}
@@ -30,7 +24,7 @@ const EventsList = ({concerts}) => {
       </ul>
     </div>
   );
-}
+};
 
 EventsList.propTypes = {
   concerts: PropTypes.arrayOf(PropTypes.object),

@@ -35,12 +35,10 @@ export const filterByCost = (concerts, maxPrice) => {
 };
 
 // add typeahead filters here:
-export const filterByTypeahead = (concerts, wordToMatch) => {
-  return concerts.filter((concert) => {
-    const regex = new RegExp(wordToMatch, 'gi');
-    return concert.title.join('').match(regex) || concert.similarArtists.join('').match(regex) || concert.venue.match(regex);
-  });
-};
+export const filterByTypeahead = (concerts, wordToMatch) => concerts.filter((concert) => {
+  const regex = new RegExp(wordToMatch, 'gi');
+  return concert.title.join('').match(regex) || concert.similarArtists.join('').match(regex) || concert.venue.match(regex);
+});
 
 export const filteredMatches = (concerts, wordToMatch, maxPrice) => {
   const typeMatch = filterByTypeahead(concerts, wordToMatch);

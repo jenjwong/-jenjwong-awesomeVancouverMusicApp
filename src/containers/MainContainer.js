@@ -7,19 +7,17 @@ import { sortByDate } from '../utilities/filterHelpers';
 
 class MainContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchConcertData(`http://demo5496710.mockable.io/`))
+    this.props.dispatch(fetchConcertData('http://demo5496710.mockable.io/'));
   }
   render() {
     return (
-      <Main concerts={this.props.concerts}/>
+      <Main concerts={this.props.concerts} />
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    concerts: sortByDate(state.concerts.filteredConcertsArray.map(key => state.concerts.concertsDictionary[key]))
-  }
-};
+const mapStateToProps = state => ({
+  concerts: sortByDate(state.concerts.filteredConcertsArray.map(key => state.concerts.concertsDictionary[key])),
+});
 
 export default connect(mapStateToProps)(MainContainer);

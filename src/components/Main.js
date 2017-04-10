@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import EventsList from './EventsList';
 import AppLogo from './AppLogo';
 import Filters from './Filters';
 // import venueDecalLogo from '../css/images/bandsNearbyLogo.svg';
-import { connect } from 'react-redux';
-import { fetchConcertData } from '../actions/actionCreators'
-
-
-const concertData = require('../../server/data/productionBetaData');
 
 class Main extends Component {
-
   componentDidMount() {
     document.addEventListener('touchstart', () => {}, true);
   }
-
   render() {
     return (
       <div>
         <header>
           <div className="header-container">
             <AppLogo />
-             <Filters />
+            <Filters />
           </div>
         </header>
         <div className="main-view-wrapper">
@@ -30,17 +23,19 @@ class Main extends Component {
             <EventsList
               concerts={this.props.concerts}
             />
-            <div className="decal-logo-container-mobile">
-            </div>
+            <div className="decal-logo-container-mobile" />
           </div>
           <div className="main-view-right">
-            <div className="decal-logo-container">
-            </div>
+            <div className="decal-logo-container" />
           </div>
         </div>
       </div>
     );
   }
 }
+
+Main.propTypes = {
+  concerts: PropTypes.arrayOf(PropTypes.objects),
+};
 
 export default Main;

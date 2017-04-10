@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import VideoList from './VideoList';
 
 const InfoDropDown = ({ artistSummary, photo, youTube, toggled, slideAnimation, id }) => {
@@ -23,17 +23,15 @@ const InfoDropDown = ({ artistSummary, photo, youTube, toggled, slideAnimation, 
       </div>
     </div>
   );
-}
+};
 
-
-// static propTypes = {
-//   artistSummary: PropTypes.string,
-//   photo: PropTypes.string,
-//   youTube: PropTypes.arrayOf(PropTypes.string),
-//   toggled: PropTypes.bool,
-//   slideAnimation: PropTypes.string,
-// }
-
-
+InfoDropDown.propTypes = {
+  artistSummary: PropTypes.string,
+  photo: PropTypes.string,
+  youTube: PropTypes.arrayOf(PropTypes.string),
+  toggled: PropTypes.bool,
+  slideAnimation: PropTypes.string,
+  id: PropTypes.string,
+};
 
 export default InfoDropDown;
