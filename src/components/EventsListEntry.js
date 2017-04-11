@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import SimilarArtistsList from './SimilarArtistsList';
 import TitleList from './TitleList';
 import InfoDropDown from './InfoDropDown';
-import { dayToEnglish, isCover, textClamp } from '../utilities/utils';
+import * as utils from '../utilities/utils';
+const { dayToEnglish, isCover, textClamp } = utils;
 
 class EventsListEntry extends Component {
   static propTypes = {
@@ -25,6 +26,10 @@ class EventsListEntry extends Component {
       toggled: false,
       isClicked: 'raised',
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.toggled !== nextState.toggled || this.props.id !== nextProps.id
   }
 
   setIsClicked() {
@@ -60,7 +65,9 @@ class EventsListEntry extends Component {
               <div className="date">{dayToEnglish(date)}</div>
               <div className="headliner">{textClamp(titles[0])}</div>
               <span className="other-bands">
-                <TitleList titles={this.props.titles} id={this.props.id} />
+                <TitleList
+                  titles={this.props.titles}
+                  id={this.props.id} />
               </span>
               <div>
                 <span className="venue">{venue}</span>

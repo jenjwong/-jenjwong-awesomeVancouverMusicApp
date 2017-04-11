@@ -1,0 +1,836 @@
+html {
+  min-width: 100%;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+
+  overflow-x: hidden;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #2E0854;
+  z-index: 99;
+  position: relative;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  color: #2E0854;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+
+li {
+  list-style-type: none;
+  opacity: 0.9;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+header {
+  background-color: black;
+  width: 100vw;
+  height: 12vh;
+  position: fixed;
+  z-index: 99;
+  overflow-y: hidden;
+}
+
+input {
+  border-radius: 0;
+  color: black;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 80%;
+  padding-left: 1%;
+  padding-right: 1%;
+  /*opacity: 0.5;*/
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type=range]:active {
+  opacity: 0.6;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #2497E3;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 20px;
+  width: 20px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #2497E3;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #2497E3;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #2497E3;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #2497E3;
+}
+
+
+
+
+input[type=text]:focus {
+  opacity: 1;
+  transition: background-color 1s;
+}
+
+input[type=text] {
+  opacity: 0.94;
+  transition: background-color 1s;
+  font-size: 0.8vw;
+  padding-left: 1vw;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /*font-family: 'Amatic SC', cursive;*/
+}
+
+::-webkit-input-placeholder { text-transform:uppercase; font-style:italic; letter-spacing:0.3vw; color:#d6d7d8;}
+::-moz-placeholder { text-transform:uppercase; font-style:italic; letter-spacing:0.3vw; color:#fcfcfc; } /* firefox 19+ */
+:-ms-input-placeholder { text-transform:uppercase; font-style:italic; letter-spacing:0.3vw; color:#fcfcfc; } /* ie */
+input:-moz-placeholder { text-transform:uppercase; font-style:italic; letter-spacing:0.3vw; color:#fcfcfc; }
+
+
+.header-container {
+  /*border: solid pink;*/
+  width: 100vw;
+  max-height: 12vh;
+  display: flex;
+}
+
+.app-logo-container {
+  flex: 1 1 25%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+}
+
+.app-logo {
+  width: 100%;
+  padding-left: 5%;
+  font-family: 'Londrina Sketch', cursive;
+  font-size: 3.3vw;
+}
+
+.app-logo-mobile {
+  display: none;
+}
+
+.filters-container {
+  /*border: solid red;*/
+  flex: 1 1 85%;
+  display: flex;
+  width: 100vw;
+  height: 11vh;
+ }
+
+ .typeahead-container {
+   /*border: solid purple;*/
+   flex: 1 1 70%;
+   align-self: center;
+   text-align: center;
+   padding-right: 4%;
+ }
+
+.cost-input-container {
+  font-family: 'Amatic SC', cursive;
+  opacity: 0.80;
+  /*border: solid blue;*/
+  flex: 1 1 20%;
+  flex-direction: column;
+  margin-right: 5%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.price-label-container {
+  flex: 1 1 25;
+  font-size: 2.5vw;
+  display: flex;
+  height: 50%;
+  /*border: solid yellow;*/
+  padding-top: 1%;
+}
+
+.price-label {
+  padding-right: 1vw;
+}
+
+.cost-input-bar-container {
+  flex: 1 1 auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.cost-min-container {
+  /*font-size: 150%;*/
+  font-size: 2vw;
+  flex: 1 1 10%;
+  text-align: left;
+  padding-right: 1vw;
+  height: 100%;
+  align-self: center;
+  display: flex;
+}
+
+.cost-max-container {
+  font-size: 2vw;
+  /*font-size: 150%;*/
+  flex: 1 1 10%;
+  padding-left: 1vw;
+  text-align: right;
+  height: 100%;
+  display: flex;
+  align-self: center;
+}
+
+.cost-min {
+  flex: 1 1 100;
+  align-self: center;
+}
+
+.cost-max {
+  flex: 1 1 100;
+  align-self: center;
+}
+
+.typed-input {
+  width: 90%;
+  height: 2.8vh;
+}
+
+.cost-input-span {
+  flex: 5 5 60%;
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+}
+
+.cost-input {
+  flex: 1 1 100%;
+  align-self: flex-start;
+}
+
+.searched-cost {
+  flex: 1 1 100%;
+  align-self: flex-end;
+  /*border: solid green;*/
+  /*margin-top: 5%;*/
+}
+
+
+.main-view-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: stretch;
+}
+
+.main-view-left {
+  flex: 1 1 25%;
+  min-width: 0;
+}
+
+.main-view-center {
+  margin-top: 11vh;
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.main-view-right {
+  flex: 1 1 25%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  min-width: 0;
+}
+
+.decal-logo {
+  /*border: solid purple;*/
+  width: 20vw;
+  height: 20vw;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  z-index: -9;
+  opacity: 0.75;
+}
+
+.event-list-entry {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.show {
+  display: inline;
+  transition: all 0.3s ease;
+}
+
+.hide {
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.show-info {
+  font-size: 100%;
+  height: 29vh;
+  position: absolute;
+  z-index: 1;
+  padding-top: 2vh;
+  padding: 3vw;
+  width: 50%;
+  overflow: hidden;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  opacity: 0.9;
+  /*border: solid purple;*/
+}
+
+.concert-photo-wrapper {
+  /*border: solid blue;*/
+  position: relative;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+  height: 30vh;
+  overflow: hidden;
+}
+
+.concert-photo {
+  /*border: solid green;*/
+  z-index: -1;
+  width: 100%;
+  height: 130%;;
+  opacity: 0.3;
+  filter: blur(3px);
+  overflow: hidden;
+}
+
+
+.artist-summary {
+  width: 90%;
+  margin: auto;
+  line-height: 150%;
+  color: black;
+}
+
+.raised {
+  transform: translateY(-200px);
+  transition: all 0.15s cubic-bezier(.18,-0.09,.73,1.36)
+}
+
+.lowered {
+  transform: translateY(0%);
+  transition: all 0.15s cubic-bezier(.18,-0.09,.73,1.36);
+}
+
+.dropdown-container {
+  overflow-y: hidden;
+}
+
+.more-info-dropdown {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.video {
+  background-color: black;
+  border-bottom: solid white;
+}
+
+
+.date {
+  font-size: 2vh;
+  opacity: 0.7;
+}
+
+.headliner {
+  margin-right: 4vw;
+  font-size: 130%;
+  font-family: 'Monoton', cursive;
+	overflow: hidden;
+}
+
+.supporting-bands-title {
+  font-size: 95%;
+}
+
+.venue {
+  font-size: .9em;
+  font-weight: bolder;
+}
+
+.startTime {
+  margin-left: 2vw;
+  margin-right: 2vw;
+  font-size: 0.7em;
+}
+
+.cost {
+  font-size: 0.7em;
+  text-align: right;
+  padding-left: 1%;
+  font-size: 100%;
+  margin-left: 0.6%;
+}
+
+
+.tickets {
+  text-align: right;
+}
+
+
+
+.tickets:hover {
+  font-weight: bold;
+}
+
+.similar-artists {
+  margin-top: 1vh;
+  font-size: 0.5em;
+  font-style: italic;
+  font-stretch: ultra-condensed;
+  opacity: 0.7;
+}
+
+
+.sounds-like-container {
+  display: flex;
+  font-stretch: extra-condensed;
+  font-size: 1.1vw;
+}
+
+.sounds-like {
+  flex: 1 1 15%;
+  margin-right: 0.2%;
+}
+
+.sounds-like-artist-container {
+  flex: 3 3 85%;
+}
+
+.sounds-like-artist-breaker {
+  opacity: .4;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.searched-cost-container-mobile {
+  display: none;
+}
+
+.decal-logo-container-mobile {
+  display: none;
+}
+
+.total-opaque {
+  opacity: 0.1;
+  transition: all 0.5s;
+}
+
+.partial-opaque {
+  opacity: 0.5;
+  transition: all 0.5s;
+}
+
+@media only screen and (min-width:800px) {
+  .event-list-entry:hover .concert-photo {
+    filter: blur(1px);
+    opacity: 0.4;
+  }
+
+  .event-list-entry:hover .show-info-container .show-info  {
+    color: #220a37;
+    font-size: 100.7%;
+    opacity: 0.8;
+  }
+}
+
+@media only screen and (min-width:1500px) {
+  .show-info {
+    font-size: 150%;
+  }
+  .event-list-entry:hover .show-info-container .show-info  {
+    color: #220a37;
+    font-size: 152%;
+    opacity: 0.8;
+  }
+}
+
+@media only screen and (max-device-width: 600px) {
+  .event-list-entry:active .concert-photo {
+    filter: blur(1px);
+    opacity: 0.4;
+  }
+
+  .event-list-entry:active  {
+    color: #220a37;
+    opacity: 0.7;
+  }
+
+  header {
+    height: 11vh;
+    background-color: black;
+    width: 100%;
+    padding: 2px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+
+  .header-container {
+    /*border: solid green;*/
+    height: 11vh;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .app-logo-container {
+    /*border: solid white 1px;*/
+    align-self: center;
+    flex: 1 1 22%;
+    display: flex;
+    height: 100%;
+  }
+
+  .app-logo {
+    display: none;
+  }
+
+  .app-logo-mobile {
+    display: flex;
+    align-self: flex-start;
+    font-size: 13vw;
+    padding-top: 1%;
+    font-family: 'Londrina Sketch', cursive;
+    /*border: solid green;*/
+
+  }
+
+  .searched-cost-container-mobile {
+    flex: 1 1 1%;
+    /*background-color: red;*/
+    display: flex;
+    order: 10;
+    align-self: flex-start;
+    margin-right: 9%;
+    justify-content: center;
+  }
+
+  .searched-cost-frame-mobile {
+    opacity: 0.5;
+    border: solid #003366 1px;
+    /*width: 12px;*/
+    display: flex;
+    justify-content: center;
+    width: 5px;
+    /*margin-left: -2px;*/
+  }
+
+  .searched-cost-mobile {
+    border: solid gray 1px;
+
+    /*flex: 1 1 10%;*/
+    align-self: center;
+
+    font-size: 50%;
+
+    /*width: 2%;*/
+  }
+
+  .filters-container {
+    /*float: right;*/
+    /*border: solid red;*/
+    /*display: flex;*/
+    flex-wrap: wrap;
+    /*align-content: center;*/
+    justify-content: center;
+    flex: 1 1 85%;
+    /*width: 100vw;*/
+    /*height: 11vh;*/
+    /*flex-direction: column;*/
+   }
+
+   .typeahead-container {
+     /*border: solid gray 1px;
+     border-radius: 5px;
+     padding-left: 4%;*/
+     /*width: 100%;
+     height: 100%;*/
+     /*width: 100vw;*/
+     flex: 1 1 75%;
+     /*width: 100%;*/
+     /*display: flex;*/
+     /*width: 100%;*/
+     /*order: 2;*/
+     /*margin-top: 2vh;*/
+     /*align-self: center;
+     text-align: center;*/
+   }
+
+
+
+  .cost-input-container {
+    /*border: solid white;*/
+    padding-left: 2%;
+    flex: 1 1 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*display: none;*/
+    height: 10%;
+    padding-top: 1%;
+  }
+
+
+
+  .price-label-container {
+    display: none;
+  }
+
+
+  /*.price-label {
+    padding-right: 1vw;
+    flex: 1 1 100%;
+  }*/
+
+  .searched-cost {
+    /*flex: 1 1 25%;
+    font-size: 70%;*/
+    display: none;
+
+    /*align-self: center;*/
+    /*padding-left: 2%;*/
+  }
+
+  .cost-input-bar-container {
+    flex: 1 1 65%;
+    display: flex;
+    /*border: solid orange;*/
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+  .cost-min {
+    /*border: solid blue;*/
+    font-size: 4vw;
+    flex: 1 1 20%;
+    text-align: center;
+    padding-right: 1vw;
+  }
+  .cost-max {
+    /*border: solid red;*/
+    font-size: 4vw;
+    flex: 1 1 20%;
+    padding-left: 1vw;
+    text-align: center;
+  }
+
+  .typed-input {
+    min-width: 92%;
+    height: 3vh;
+    /*border: solid white 1px;*/
+    /*flex: 1 1 10%;*/
+    /*width: 60%;*/
+  }
+
+  .cost-input-span {
+    flex: 5 5 60%;
+    /*align-self: center;*/
+
+    /*border: solid yellow;*/
+    display: flex;
+    /*align-items: center;*/
+    /*width: 1vw;*/
+    /*transform: rotate(90deg);
+    padding-top: 90%;*/
+  }
+
+  .cost-input {
+    flex: 1 1 100%;
+    align-self: center;
+  }
+
+
+
+
+  .main-view-center {
+    flex: 1 1 100%;
+    margin-top: 11vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .main-view-left {
+    flex: 0 0 0%;
+  }
+  .main-view-right {
+    flex: 0 0 0%;
+  }
+
+  .decal-logo {
+    display: none;
+  }
+
+  .decal-logo-container-mobile {
+    display: block;
+    flex: 1 1 100%;
+    align-items: flex-end;
+    text-align: center;
+    background-color: black;
+    opacity: 0.9;
+  }
+
+  .decal-logo-mobile {
+    padding-top: 3%;
+    padding-bottom: 2%;
+    width: 50%;
+    filter: invert(100%);
+    opacity: 0.8;
+    /*border: solid green;*/
+  }
+
+
+  .show-info {
+    width: 100%;
+    font-size: 100%;
+    padding: 3vw;
+    padding-top: 6vw;
+    height: 30.5vh;
+    /*height: 32.2vh;*/
+  }
+
+  .concert-photo-wrapper {
+    height: 33.2vh;
+  }
+
+  .cost {
+    padding-right: 6%;
+  }
+
+  ::-webkit-input-placeholder { text-transform:lowercase; font-style:italic; letter-spacing:0.2vw; color:#e5e5e5;}
+  ::-moz-placeholder { text-transform:lowercase; font-style:italic; letter-spacing:0.2vw; color:#e5e5e5; } /* firefox 19+ */
+  :-ms-input-placeholder { text-transform:lowercase; font-style:italic; letter-spacing:0.2vw; color:#e5e5e5; } /* ie */
+  input:-moz-placeholder { text-transform:lowercase; font-style:italic; letter-spacing:0.2vw; color:#e5e5e5; }
+
+  input[type=text] {
+    font-size: 2.2vw;
+  }
+
+  .sounds-like-container {
+    display: flex;
+    font-stretch: extra-condensed;
+    font-size: 130%
+  }
+
+  .sounds-like {
+    flex: 1 1 22%;
+    margin-right: 0.2%;
+  }
+
+  .sounds-like-artist-container {
+    flex: 3 3 77%;
+  }
+
+
+
+
+
+}

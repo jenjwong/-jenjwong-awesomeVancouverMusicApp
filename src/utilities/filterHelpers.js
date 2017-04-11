@@ -1,3 +1,5 @@
+import debounce from 'lodash/debounce';
+
 export const sortByDate = (concerts) => {
   const makeDateArray = string => string.split('-');
   return concerts.sort((a, b) => {
@@ -16,11 +18,13 @@ export const sortByDate = (concerts) => {
 };
 
 export const findMinMax = (concerts) => {
-  return concerts.reduce((costArray, item) => {
-    item.cost < costArray[0] ? costArray[0] = item.cost : null;
-    item.cost > costArray[1] ? costArray[1] = item.cost : null;
-    return costArray;
-  }, [Infinity, -Infinity]);
+  if (Array.isArray(concerts)) {
+    return concerts.reduce((costArray, item) => {
+      item.cost < costArray[0] ? costArray[0] = item.cost : null;
+      item.cost > costArray[1] ? costArray[1] = item.cost : null;
+      return costArray;
+    }, [Infinity, -Infinity]);
+  }
 };
 
 export const filterByCost = (concerts, maxPrice) => {
@@ -31,21 +35,14 @@ export const filterByCost = (concerts, maxPrice) => {
 };
 
 // add typeahead filters here:
-export const filterByTypeahead = (concerts, wordToMatch) => {
-  return concerts.filter((concert) => {
-    const regex = new RegExp(wordToMatch, 'gi');
-    return concert.title.join('').match(regex) || concert.similarArtists.join('').match(regex) || concert.venue.match(regex);
-  });
-};
+export const filterByTypeahead = (concerts, wordToMatch) => concerts.filter((concert) => {
+  const regex = new RegExp(wordToMatch, 'gi');
+  return concert.title.join('').match(regex) || concert.similarArtists.join('').match(regex) || concert.venue.match(regex);
+});
 
 export const filteredMatches = (concerts, wordToMatch, maxPrice) => {
   const typeMatch = filterByTypeahead(concerts, wordToMatch);
   return filterByCost(typeMatch, maxPrice);
-};
-
-export const displayMatches = (concertData, typeAheadSearch, costSearch, handleFilters) => {
-  const filtered = filteredMatches(concertData, typeAheadSearch, costSearch);
-  return handleFilters(filtered);
 };
 
 export const displayMin = min => min === 0 ? 'Free' : `$${min}`;

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import YouTube from 'react-youtube';
-import { hideControlsMobile, pauseAllButPlaying } from '../utilities/videoEntryHelpers';
+import * as videoEntryHelpers from '../utilities/videoEntryHelpers';
+const { hideControlsMobile, pauseAllButPlaying } = videoEntryHelpers;
 
 const VideoEntry = ({ index, videoId, isRendered }) => {
   const opts = hideControlsMobile();

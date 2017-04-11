@@ -1,13 +1,11 @@
 import React, { PropTypes } from 'react';
 
-const SimilarArtistsEntry = ({ artist, index, collection }) => {
-  return (
-    <span key={index}>
-      <span className="sounds-like-artist">{artist}</span>
-      {index !== collection.length - 1 && <span className="sounds-like-artist-breaker">·</span>}
-    </span>
+const SimilarArtistsEntry = ({ artist, index, collection }) => (
+  <span key={index}>
+    <span className="sounds-like-artist">{artist}</span>
+    {index !== collection.length - 1 && <span className="sounds-like-artist-breaker">·</span>}
+  </span>
   );
-};
 
 SimilarArtistsEntry.propTypes = {
   artist: PropTypes.string,

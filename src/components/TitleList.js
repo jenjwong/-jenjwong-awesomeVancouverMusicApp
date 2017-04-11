@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
-import { isSmallScreen } from '../utilities/utils';
 
-const TitleList = ({ titles, index, id }) => {
-  return (
-    <div>
-      {!isSmallScreen() && <div>
+import * as utils from '../utilities/utils';
+const { isSmallScreen } = utils;
+
+const TitleList = ({ titles, index, id }) => (
+  <div>
+    {!isSmallScreen() && <div>
         {titles.reduce((acc, title) => {
           if (index !== 0) {
             acc.push(<span key={`${title}${id}`} className="supporting-bands-title">{title}</span>);
@@ -12,12 +13,11 @@ const TitleList = ({ titles, index, id }) => {
           return acc;
         }, [])}
       </div>}
-      {isSmallScreen() && <div>
-        <span key={'supportingBand'} className="supporting-bands-title">{titles[1]}</span>
+    {isSmallScreen() && <div>
+      <span className="supporting-bands-title">{titles[1]}</span>
       </div>}
-    </div>
+  </div>
   );
-};
 
 TitleList.propTypes = {
   titles: PropTypes.arrayOf(PropTypes.string),
