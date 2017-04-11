@@ -1,23 +1,39 @@
 # Bands Nearby
+Bands Nearby is a frictionless interface that allows users to decide at a glance if they want go to a show and buy tickets with a click. The application uses web scrapers made with vanilla JS and JSDOM to create a custom data-set of concert-listings from local venues often too small or underground to be included in mainstream listings. 
 
-At a glance decide if you want go to a show and buy tickets with a click. Bands Nearby is a frictionless interface to explore music. The application uses vanilla JS and JSDOM to scrape concert listings from local venues often too small or underground to be included in mainstream listings. Built with es6, React, React Router, Node.js, JSDOM, Jest, Enzyme, Webpack, Preact, Bluebird, Flexbox.
+Bands Nearby Beta is available on web and mobile-web: http://beta.bandsnearby.com/
 
-Bands Nearby Beta is available on web and mobile: http://beta.bandsnearby.com/
+Bands Nearby Desktop:
+(https://github.com/jenjwong/bands-nearby/blob/beta/src/css/images/desktop.png)
 
-Bands Nearby:
-![alt text](https://github.com/jenjwong/bands-nearby/blob/beta/src/css/images/venuePic.png "Bands Nearby")
+Bands Nearby Mobile:
+(https://github.com/jenjwong/bands-nearby/blob/beta/src/css/images/venuePic.png)
 
-This application was built in React, but is easily ported over to Preact. **[Preact](https://preactjs.com/) is a fast 3kB alternative to React with the same ES6 API. Configuring Webpack to alias Preact for React cuts bundle-file size by 75% and makes initial load-time six to nine times faster.**  
+
+### Technologies
+
+* es6
+* React
+* React-Router
+* Redux
+* Redux-Thunks
+* Normalizr
+* Enzyme
+* Jest
+* Webpack
+* Node.js
+* JSDom
+* Bluebird Promises
+* Google Caja Sanitizer
+* Flexbox
+
+This application is built in React, but is easily ported over to Preact. **[Preact](https://preactjs.com/) is a fast 3kB alternative to React with the same ES6 API. Configuring Webpack to alias Preact for React cuts bundle-file size by 75% and makes initial load-time six to nine times faster.**  
+
 
 ## Getting Started
 
-Clone the repository and run npm install to get a copy of the project up and running on your local machine for development and testing purposes. Testing and development builds are automated by running npm run start and npm run test. See deployment for notes on how to deploy the project on a live system. Get a development environment running by installing npm dependencies and running cronjob.js to seed your data. 
+Clone the repository and run npm install to get a copy of the project up and running on your local machine. Testing and development builds are automated by running npm run start and npm run test. See deployment for notes on how to deploy the project on a live system. Get a development environment running by installing npm dependencies and running cronjob.js to seed your data. 
 
-### Prerequisites
-
-Node.js
-
-NPM
 
 ### Generating the Beta Dataset
 
@@ -69,9 +85,9 @@ In cronjob.js import your scraper and add the new venue object to the venues arr
   const venues = [{ name: 'venueName', http: 'http://example.com', scraper: yourScraper }]
  ```
  
-See bayBridged.sf for an example scraper. The fastest scrapers used a breadth first traversal of the DOM that matched data based on class and id selectors, but querying the DOM with specific selectors and using RegExp proved better for robustness and code readability. 
+See bayBridged.sf for an example scraper. The fastest scrapers used a breadth-first-traversal of the DOM that matched data based on class and id selectors, but querying the DOM with specific selectors and using RegExp proved better for robustness and code-readability. 
 
-Bands Nearby uses [Bluebird](http://bluebirdjs.com/docs/getting-started.html) promises to handle asynchronous actions. The Bluebird library was a better choice over native es6 promises because of helpful methods like asynch map and reduce and the ability to import and promisify entire libraries.
+Bands Nearby uses [Bluebird](http://bluebirdjs.com/docs/getting-started.html) promises to handle asynchronous actions. The Bluebird library was a better choice over native es6 promises because of helpful methods like async map and reduce and the ability to import and promisify entire libraries.
 
 ## Tests
 
@@ -94,12 +110,17 @@ Jest caches your Babel environment. If you update your Babel environment to clea
 jest no-cache
 ```
 
-When adding tests, save your files in the components directory with the naming convention ComponenName.test.js. This style of saving tests alongside components was chosen to foster self-documenting code.
+For self-documenting code, when adding tests, save your files in the directory alongside the file it is testing with the naming convention ComponenName.test.js.
 
 To generate an Istanbul code coverage report run:
 ```
-npm run istanbul-coverage
+npm run coverage
 ```
+
+## Redux Store
+Bands Nearby manages state with Redux. Fetched data is flattened with Normalizr. The store is designed like a relational database to minimize duplication of data. Concerts are stored in a centralized dictionary and are accessed through arrays that track look-up ids.
+
+Bands Nearby uses higher-order reducers to batch dispatching minimizing unnecessary renders.
 
 ## Deployment
 Once a copy of Bands Nearby is running on your server, automate data generation by [setting up a cron job](https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-on-a-vps) to run cronjob.js.
@@ -108,5 +129,4 @@ Once a copy of Bands Nearby is running on your server, automate data generation 
 ## License
 
 This application is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 
