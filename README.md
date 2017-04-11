@@ -1,15 +1,6 @@
 # Bands Nearby
 Bands Nearby is a frictionless interface that allows users to decide at a glance if they want go to a show and buy tickets with a click. The application uses web scrapers made with vanilla JS and JSDOM to create a custom data-set of concert-listings from local venues often too small or underground to be included in mainstream listings. 
 
-Bands Nearby Beta is available on web and mobile-web: http://beta.bandsnearby.com/
-
-Bands Nearby Desktop:
-![alt text](https://github.com/jenjwong/bands-nearby/blob/development/css/images/desktop.png "Bands Nearby Desktop")
-
-Bands Nearby Mobile:
-![alt text](https://github.com/jenjwong/bands-nearby/blob/beta/src/css/images/venuePic.png "Bands Nearby Mobile")
-
-
 ### Technologies
 
 * es6
@@ -26,6 +17,15 @@ Bands Nearby Mobile:
 * Bluebird Promises
 * Google Caja Sanitizer
 * Flexbox
+
+Bands Nearby Beta is available on web and mobile-web: http://beta.bandsnearby.com/
+
+Bands Nearby Desktop:
+![alt text](https://github.com/jenjwong/bands-nearby/blob/development/css/images/desktop.png "Bands Nearby Desktop")
+
+Bands Nearby Mobile:
+![alt text](https://github.com/jenjwong/bands-nearby/blob/beta/src/css/images/venuePic.png "Bands Nearby Mobile")
+
 
 This application is built in React, but is easily ported over to Preact. **[Preact](https://preactjs.com/) is a fast 3kB alternative to React with the same ES6 API. Configuring Webpack to alias Preact for React cuts bundle-file size by 75% and makes initial load-time six to nine times faster.**  
 
