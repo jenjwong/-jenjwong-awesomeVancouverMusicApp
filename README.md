@@ -86,11 +86,11 @@ In cronjob.js import your scraper and add the new venue object to the venues arr
  
 See bayBridged.sf for an example scraper. The fastest scrapers used a breadth-first-traversal of the DOM that matched data based on class and id selectors, but querying the DOM with specific selectors and using RegExp proved better for robustness and code-readability. 
 
-Bands Nearby uses [Bluebird](http://bluebirdjs.com/docs/getting-started.html) promises to handle asynchronous actions. The Bluebird library was a better choice over native es6 promises because of helpful methods like async map and reduce and the ability to import and promisify entire libraries.
+Bands Nearby uses [Bluebird](http://bluebirdjs.com/docs/getting-started.html) promises to handle asynchronous actions. Bluebird library was chosen over native es6 promises because of helpful methods like async map and reduce and the ability to import and promisify entire libraries.
 
 ## Tests
 
-Bands Nearby uses [Jest](https://facebook.github.io/jest/) with [Enzyme](https://github.com/airbnb/enzyme). Enzyme allows shallow rendering of components, making it easy to isolate tests. Shallow rendering in Enzyme renders components one level deep so a component can be tested in isolation of its children components.
+Bands Nearby uses [Jest](https://facebook.github.io/jest/) with [Enzyme](https://github.com/airbnb/enzyme). Enzyme allows shallow rendering of components, making it easy to isolate tests. Shallow rendering in Enzyme renders components one level deep so a component can be tested in isolation of its child components.
 
 To execute the test suite run:
 ```
@@ -116,7 +116,7 @@ To generate an Istanbul code coverage report run:
 npm run coverage
 ```
 
-## Redux Store
+## Redux Architecture
 Bands Nearby manages state with Redux. Fetched data is flattened with Normalizr. The store is designed like a relational database to minimize duplication of data. Concerts are stored in a centralized dictionary and are accessed through arrays that track look-up ids.
 
 Bands Nearby uses higher-order reducers to batch dispatching minimizing unnecessary renders.
