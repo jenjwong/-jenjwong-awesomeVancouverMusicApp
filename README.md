@@ -109,7 +109,7 @@ Jest caches your Babel environment. If you update your Babel environment to clea
 jest no-cache
 ```
 
-For self-documenting code, when adding tests, save your files in the directory alongside the file it is testing with the naming convention ComponenName.test.js.
+For self-documenting code, when adding tests, save your files in the directory alongside the file it is testing with the naming convention ComponentName.test.js.
 
 To generate an Istanbul code coverage report run:
 ```
