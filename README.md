@@ -3,7 +3,7 @@ Bands Nearby is a frictionless interface that allows users to decide at a glance
 
 ### Technologies
 
-* es6
+* ES6
 * React
 * React-Router
 * Redux
