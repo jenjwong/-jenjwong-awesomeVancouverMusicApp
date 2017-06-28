@@ -15,6 +15,7 @@ const sfScraper = (window, venue, id) => {
       return events;
     }, []);
   };
+};
 
   const scrapeEachLink = (arrayOfLinks) => {
     return bluebirdPromise.map(overviewURL, (showDetailsURL) => {
@@ -23,7 +24,7 @@ const sfScraper = (window, venue, id) => {
         const scrapedTitle = window.document.querySelector('.ds-event-title-text').textContent;
         const reTitle = /(.*):/g;
         let title = reTitle.exec(scrapedTitle);
-        title === null ? title = scrapedTitle : title = title[1];
+        title = !title ? scrapedTitle : title[1];
         if (title.includes(',')) {
           title = title.split(',')
         } else {
@@ -96,6 +97,6 @@ const sfScraper = (window, venue, id) => {
 
   const overviewURL = getSummaryLinks(window);
   return scrapeEachLink(overviewURL);
-};
+
 
 module.exports = sfScraper;
