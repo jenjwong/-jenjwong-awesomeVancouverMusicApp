@@ -27,11 +27,10 @@ const generateShowData = (venue, id) => {
     const stringifyedData = JSON.stringify(allData, null, ' ');
     fs.writeFile('../data/bandsNearbyData.json', stringifyedData, 'utf8');
   })
-  .catch(error => console.error(`Handle error: error in chronjob.js + ${error}`))
+  .catch(error => console.error(`Handle error: error in cronJob.js + ${error}`))
 };
 
 const venues = [
-
   { name: 'The Chapel', http: 'http://calendar.thebaybridged.com/venues/the-chapel?page=1', scraper: sfScraper },
   { name: 'Fox Theater', http: 'http://calendar.thebaybridged.com/venues/fox-theater', scraper: sfScraper },
   { name: 'The Fillmore', http: 'http://calendar.thebaybridged.com/venues/the-fillmore', scraper: sfScraper },
