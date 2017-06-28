@@ -12,8 +12,6 @@ const fs = bluebirdPromise.promisifyAll(require('fs'));
 var path = require('path');
 
 const generateShowData = (venue, id) => {
-  console.log(filterSoldOutShows)
-  console.log('called with', venue.name)
   getShows(venue.http)
   .then((data) => venue.scraper(data, venue.name))
   .map(concert => idDecorator(concert))
@@ -37,16 +35,16 @@ const venues = [
 
   { name: 'The Chapel', http: 'http://calendar.thebaybridged.com/venues/the-chapel?page=1', scraper: sfScraper },
   { name: 'Fox Theater', http: 'http://calendar.thebaybridged.com/venues/fox-theater', scraper: sfScraper },
-  // { name: 'The Fillmore', http: 'http://calendar.thebaybridged.com/venues/the-fillmore', scraper: sfScraper },
-  // { name: 'Lost Church', http: 'http://calendar.thebaybridged.com/venues/the-lost-church', scraper: sfScraper },
-  // { name: 'Great American Music Hall', http: 'http://calendar.thebaybridged.com/venues/great-american-music-hall', scraper: sfScraper  },
-  // { name: 'The Independent', http: 'http://calendar.thebaybridged.com/venues/the-independent', scraper: sfScraper },
-  // { name: 'Bimbo\'s 365', http: 'http://calendar.thebaybridged.com/venues/bimbo-s-365-club', scraper: sfScraper },
-  // { name: 'Rickshaw Stop', http: 'http://calendar.thebaybridged.com/venues/rickshaw-stop', scraper: sfScraper },
-  // { name: 'Slim\'s', http: 'http://calendar.thebaybridged.com/venues/slim-s', scraper: sfScraper },
-  // { name: 'The Greek Theater', http: 'http://calendar.thebaybridged.com/venues/greek-theatre', scraper: sfScraper },
-  // { name: 'Sweetwater Music Hall', http: 'http://calendar.thebaybridged.com/venues/sweetwater-music-hall', scraper: sfScraper },
-  // { name: 'Doc\'s Lab', http: 'http://calendar.thebaybridged.com/venues/docs-lab', scraper: sfScraper },
+  { name: 'The Fillmore', http: 'http://calendar.thebaybridged.com/venues/the-fillmore', scraper: sfScraper },
+  { name: 'Lost Church', http: 'http://calendar.thebaybridged.com/venues/the-lost-church', scraper: sfScraper },
+  { name: 'Great American Music Hall', http: 'http://calendar.thebaybridged.com/venues/great-american-music-hall', scraper: sfScraper  },
+  { name: 'The Independent', http: 'http://calendar.thebaybridged.com/venues/the-independent', scraper: sfScraper },
+  { name: 'Bimbo\'s 365', http: 'http://calendar.thebaybridged.com/venues/bimbo-s-365-club', scraper: sfScraper },
+  { name: 'Rickshaw Stop', http: 'http://calendar.thebaybridged.com/venues/rickshaw-stop', scraper: sfScraper },
+  { name: 'Slim\'s', http: 'http://calendar.thebaybridged.com/venues/slim-s', scraper: sfScraper },
+  { name: 'The Greek Theater', http: 'http://calendar.thebaybridged.com/venues/greek-theatre', scraper: sfScraper },
+  { name: 'Sweetwater Music Hall', http: 'http://calendar.thebaybridged.com/venues/sweetwater-music-hall', scraper: sfScraper },
+  { name: 'Doc\'s Lab', http: 'http://calendar.thebaybridged.com/venues/docs-lab', scraper: sfScraper },
 ];
 
 // creates bandsNearbyData file if it does not exist, archives the last version using node-fs
