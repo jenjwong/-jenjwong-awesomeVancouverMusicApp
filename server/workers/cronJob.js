@@ -25,7 +25,6 @@ const generateShowData = (venue, id) => {
   })
   .then((allData) => {
     const stringifyedData = JSON.stringify(allData, null, ' ');
-    console.log(stringifyedData);
     fs.writeFile('../data/bandsNearbyData.json', stringifyedData, 'utf8');
   })
   .catch(error => console.error(`Handle error: error in chronjob.js + ${error}`))
