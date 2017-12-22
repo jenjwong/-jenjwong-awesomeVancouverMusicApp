@@ -90,6 +90,8 @@ Bands Nearby uses [Bluebird](http://bluebirdjs.com/docs/getting-started.html) pr
 
 ## Tests
 
+**Exciting update! Bands Nearby will be using [Sauce Labs](https://saucelabs.com/) for testing as part of their generous program to support open source projects! Thanks Sauce Labs!** <br><br> ![Sauce Labs Logo](https://saucelabs.com/content/images/logo@2x.png)
+
 Bands Nearby uses [Jest](https://facebook.github.io/jest/) with [Enzyme](https://github.com/airbnb/enzyme). Enzyme allows shallow rendering of components, making it easy to isolate tests. Shallow rendering in Enzyme renders components one level deep so a component can be tested in isolation of its child components.
 
 To execute the test suite run:
