@@ -129,5 +129,5 @@ Once a copy of Bands Nearby is running on your server, automate data generation 
 
 ## License
 
-This application is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This application is licensed under the MIT License - see the [LICENSE.md](https://github.com/jenjwong/bands-nearby/blob/development/LICENSE.md) file for details
 
