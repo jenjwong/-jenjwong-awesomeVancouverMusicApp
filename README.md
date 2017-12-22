@@ -71,10 +71,15 @@ See bayBridged.sf for an example scraper. The fastest scrapers used a breadth fi
 
 Bands Nearby uses [Bluebird](http://bluebirdjs.com/docs/getting-started.html) promises to handle asynchronous actions. The Bluebird library was a better choice over native es6 promises because of helpful methods like asynch map and reduce and the ability to import and promisify entire libraries.
 
+## Tests
+
+**Exciting update! Bands Nearby will be using [Sauce Labs](https://saucelabs.com/) for testing as part of their generous program to support open source projects! Thanks Sauce Labs!** <br><br> ![Sauce Labs Logo](https://saucelabs.com/content/images/logo@2x.png)
+
 ## Deployment
 Once a copy of Bands Nearby is running on your server, automate data generation by [setting up a cron job](https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-on-a-vps) to run cronjob.js. 
 
 
 ## License
 
-This application is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This application is licensed under the MIT License - see the [LICENSE.md](https://github.com/jenjwong/bands-nearby/blob/development/LICENSE.md) file for details
+
